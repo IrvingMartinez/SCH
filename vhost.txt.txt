@@ -1,0 +1,7 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    DocumentRoot "C:/xampp/htdocs/sch"
+    ServerName sch
+</VirtualHost>
+
+127.0.0.1 sch
