@@ -8,7 +8,6 @@ defined('_EXEC') or die;
 * @since 1.0.0
 * @version 2.0.0
 *
-* @author David Miguel Gómez Macías < davidgomezmacias@gmail.com >
 * @copyright Copyright (C) CodeMonkey - Platform. All Rights Reserved.
 */
 

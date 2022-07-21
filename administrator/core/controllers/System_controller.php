@@ -34,7 +34,7 @@ class System_controller extends Controller
 					$labels = [];
 
 					if ( is_null($post['username']) )
-						array_push($labels, ['username', 'Por favor, escriba el correo electrónico con el que está registrado.']);
+						array_push($labels, ['username', 'Por favor, escriba el nombre de usuario con el que está registrado.']);
 
 					if ( is_null($post['password']) )
 						array_push($labels, ['password', 'Por favor, escriba una contraseña.']);
@@ -56,7 +56,7 @@ class System_controller extends Controller
 							echo json_encode([
 								'status' => 'error',
 								'labels' => [
-									['username', 'El correo electrónico no se encuentra registrado.']
+									['username', 'El nombre de usuario no se encuentra registrado.']
 								]
 							], JSON_PRETTY_PRINT);
 						}

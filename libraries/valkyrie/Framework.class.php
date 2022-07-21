@@ -9,7 +9,7 @@ defined('_EXEC') or die;
 * @version 1.0.2
 * @license You can see LICENSE.txt
 *
-* @author David Miguel Gómez Macías < davidgomezmacias@gmail.com >
+* 
 * @copyright Copyright (C) CodeMonkey - Platform. All Rights Reserved.
 *
 * @todo Se actualizara el sistema para usar namespaces y permitir a las librerias ser independientes por clasificación.

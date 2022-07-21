@@ -2,7 +2,7 @@
         <footer class="main-footer">
             <section class="copyright">
                 <div class="container">
-                    © 2020 <b>{$vkye_webpage}</b> <i class="mdi mdi-heart text-danger"></i> by <a href="https://codemonkey.com.mx" target="_blank">codemonkey.com.mx</a>
+                    © 2022 <b>{$vkye_webpage}</b>
                 </div>
             </section>
         </footer>
