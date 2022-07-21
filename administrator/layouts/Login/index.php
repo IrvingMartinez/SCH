@@ -8,7 +8,7 @@
 
         <div class="label">
             <label>
-                <input name="username" type="text" placeholder="Correo electrónico"/>
+                <input name="username" type="text" placeholder="Nombre de usuario"/>
                 <p class="description"></p>
             </label>
         </div>

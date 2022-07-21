@@ -9,7 +9,6 @@ defined('_EXEC') or die;
 * @version 1.0.0
 * @license You can see LICENSE.txt
 *
-* @author David Miguel Gómez Macías < davidgomezmacias@gmail.com >
 * @copyright Copyright (C) CodeMonkey - Platform. All Rights Reserved.
 */
 

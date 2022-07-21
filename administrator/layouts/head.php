@@ -35,12 +35,12 @@
 		<header class="topnav d-print-none">
 			<div class="topbar-main">
 				<div class="container-fluid">
-					<!-- <figure class="logo">
+					<figure class="logo">
 						<a href="javascript:void(0);">
-							<img src="{$path.images}logotype-sm-white.svg" alt="Logotipo" height="50" class="logo-sm">
-							<img src="{$path.images}logotype-large-white.svg" alt="Logotipo" height="50" class="logo-large">
+							<img src="{$path.images}logotype-sm-white.jpeg" alt="Logotipo" height="50" class="logo-sm">
+							<img src="{$path.images}logotype-sm-white.jpeg" alt="Logotipo" height="50" class="logo-large">
 						</a>
-					</figure> -->
+					</figure>
 
 					<div class="topbar-custom">
 						<ul class="list-inline">

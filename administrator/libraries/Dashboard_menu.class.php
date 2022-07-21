@@ -13,15 +13,15 @@ class Dashboard_menu
             'icon' => 'dripicons-home'
         ];
 
-        if ( in_array('{blog_read}', Session::get_value('session_permissions')) )
-        {
-            $menu[] = [
-                'name' => 'Blog',
-                'url' => 'index.php?c=blog',
-                'taget' => '_blank',
-                'icon' => 'dripicons-blog'
-            ];
-        }
+        // if ( in_array('{blog_read}', Session::get_value('session_permissions')) )
+        // {
+        //     $menu[] = [
+        //         'name' => 'Blog',
+        //         'url' => 'index.php?c=blog',
+        //         'taget' => '_blank',
+        //         'icon' => 'dripicons-blog'
+        //     ];
+        // }
 
         return $menu;
     }
