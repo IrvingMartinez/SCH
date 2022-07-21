@@ -7,6 +7,8 @@ class Set_users_permissions_vkye_adm
     {
         $arr = [
             'Index/index' => 'ALL',
+            'Manager/index' => 'ALL',
+            'Monitor/index' => 'ALL',
             'Help/index' => ['{help_development}'],
             'Users/index' => ['{users_read}'],
             'Users/create_user' => ['{users_create}'],

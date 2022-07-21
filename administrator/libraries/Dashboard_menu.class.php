@@ -13,15 +13,30 @@ class Dashboard_menu
             'icon' => 'dripicons-home'
         ];
 
-        if ( in_array('{blog_read}', Session::get_value('session_permissions')) )
-        {
-            $menu[] = [
-                'name' => 'Blog',
-                'url' => 'index.php?c=blog',
-                'taget' => '_blank',
-                'icon' => 'dripicons-blog'
-            ];
-        }
+        $menu[] = [
+
+          'name' => 'Incidencias',
+          'url' => 'index.php?c=manager',
+          'icon' => 'dripicons-flag'
+        ];
+
+        $menu[] = [
+
+           'name' => 'Monitoreo',
+           'url' => 'index.php?c=monitor',
+           'icon' => 'dripicons-user-group'
+        ];
+
+
+        // if ( in_array('{blog_read}', Session::get_value('session_permissions')) )
+        // {
+        //     $menu[] = [
+        //         'name' => 'Blog',
+        //         'url' => 'index.php?c=blog',
+        //         'taget' => '_blank',
+        //         'icon' => 'dripicons-blog'
+        //     ];
+        // }
 
         return $menu;
     }
