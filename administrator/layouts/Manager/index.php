@@ -13,12 +13,12 @@
               <a href="index.php">{$vkye_webpage}</a>
             </li>
             <li class="breadcrumb-item active">
-              Encargado de ::area_select_from_array::
+              Encargado de Área
             </li>
           </ol>
 
           <h4 class="page-title">
-            Monitoreo de ::area_select_from_array::
+            Monitoreo de Incidencias
           </h4>
       </div>
     </div>
@@ -35,7 +35,7 @@
 
             <!-- Card Body Inner -->
 
-            <p class="text-muted m-b-30 font-14">Monitor de Incidencias</p>
+            <p class="text-muted m-b-30 font-14">Incidencias recibidas</p>
 
             <!-- STARTS Table indexer -->
 
@@ -44,6 +44,7 @@
                     <li data-tab-target="tab1"><i class="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp Incidencias Reportadas</li>
                     <li data-tab-target="tab2"><i class="fa fa-hourglass-end" aria-hidden="true"></i>&nbsp Incidencias Pendientes</li>
                     <li data-tab-target="tab3"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp Incidencias Contestadas</li>
+                    <li data-tab-target="tab4"><i class="fa fa-book" aria-hidden="true"></i>&nbsp Kardex de Incidencias</li>
                 </ul>
 
                 <!-- Atts for Tab 1 -->
@@ -96,6 +97,21 @@
                           <th>Status</th>
                           <th>Revisar Reporte</th>
                           <th>Enviar al Kardex</th>
+                        </tr>
+                      </table>
+                    </div>
+                </div>
+                <!-- Atts for Tab 4 -->
+                <div class="tab" data-target="tab4">
+                    Incidencias revisadas y contestadas por Recursos Humanos
+                    <div class="table-box-responsive-lg">
+                      <table id="blog" class="table m-b-0" style="font size: 14px;">
+                        <tr>
+                          <!-- Table contents, Header -->
+                          <th>ID Kardex</th>
+                          <th>ID Empleado</th>
+                          <th>Empleado</th>
+                          <th>Revisar Historial</th>
                         </tr>
                       </table>
                     </div>

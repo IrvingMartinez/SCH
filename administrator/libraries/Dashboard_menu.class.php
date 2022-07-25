@@ -14,17 +14,21 @@ class Dashboard_menu
         ];
 
         $menu[] = [
-
           'name' => 'Incidencias',
           'url' => 'index.php?c=manager',
           'icon' => 'dripicons-flag'
         ];
 
         $menu[] = [
-
            'name' => 'Monitoreo',
            'url' => 'index.php?c=monitor',
            'icon' => 'dripicons-user-group'
+        ];
+
+        $menu[] = [
+          'name' => 'Horarios',
+          'url' => 'index.php?c=schedule',
+          'icon' => 'dripicons-alarm'
         ];
 
 
