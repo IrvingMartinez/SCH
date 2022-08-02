@@ -9,6 +9,19 @@ $this->dependencies->add(['js', '{$path.js}pages/users/create.js']);
 $this->dependencies->add(['js', '{$path.js}pages/users/view.js']);
 $this->dependencies->add(['js', '{$path.js}pages/users/update.js']);
 $this->dependencies->add(['js', '{$path.js}pages/users/delete.js']);
+
+//table
+$this->dependencies->add(['css','{$path.plugins}datatables/css/jquery.dataTables.min.css']);
+$this->dependencies->add(['css','{$path.plugins}datatables/css/dataTables.material.min.css']);
+$this->dependencies->add(['css','{$path.plugins}datatables/css/responsive.dataTables.min.css']);
+$this->dependencies->add(['css','{$path.plugins}datatables/css/buttons.dataTables.min.css']);
+$this->dependencies->add(['js','{$path.plugins}datatables/js/jquery.dataTables.min.js']);
+$this->dependencies->add(['js','{$path.plugins}datatables/js/dataTables.material.min.js']);
+$this->dependencies->add(['js','{$path.plugins}datatables/js/dataTables.responsive.min.js']);
+$this->dependencies->add(['js','{$path.plugins}datatables/js/dataTables.buttons.min.js']);
+$this->dependencies->add(['js','{$path.plugins}datatables/js/vfs_fonts.js']);
+$this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.js']);
+
 ?>
 <main class="wrapper">
     <div class="container-fluid">
@@ -44,17 +57,17 @@ $this->dependencies->add(['js', '{$path.js}pages/users/delete.js']);
                 <div class="card m-b-30">
                     <div class="card-body">
                         <form name="search" class="m-b-20" data-table-target="users">
-                            <input type="search" name="search" value="" placeholder="Busca por nombre o correo electrónico.">
+                            <input type="search" name="search" value="" placeholder="Busca por nombre de usuario">
                         </form>
 
                         <div class="table-box-responsive-lg">
-                            <table id="users" class="table m-b-0" style="font-size: 14px;">
+                            <table id="users" class="table m-b-0" style="font-size: 14px;border: none;">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombre</th>
+                                        <th></th>
                                         <th>Usuario</th>
-                                        <th>Correo electrónico</th>
+                                        <th></th>
                                         <th>Nivel</th>
                                         <th></th>
                                     </tr>
@@ -63,9 +76,9 @@ $this->dependencies->add(['js', '{$path.js}pages/users/delete.js']);
                                     <?php foreach ( $users as $value ): ?>
                                         <tr>
                                             <td data-title="ID">#<?= $value['id'] ?></td>
-                                            <td data-title="Nombre"><?= $value['name'] ?></td>
+                                            <td></td>
                                             <td data-title="Usuario"><?= $value['username'] ?></td>
-                                            <td data-title="Correo electrónico"><?= $value['email'] ?></td>
+                                            <td></td>
                                             <td data-title="Nivel"><?= $value['level'] ?></td>
 
                                             <td data-title="Acciones">
@@ -96,7 +109,7 @@ $this->dependencies->add(['js', '{$path.js}pages/users/delete.js']);
         <header>Agregar nuevo usuario.</header>
         <main>
             <form name="users_create">
-                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'permissions' => $permissions, 'ladas' => $ladas] ); ?>
+                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'permissions' => $permissions] ); ?>
             </form>
         </main>
         <footer>
@@ -118,7 +131,7 @@ $this->dependencies->add(['js', '{$path.js}pages/users/delete.js']);
         <header>Viendo el usuario: <strong data-user-title></strong>.</header>
         <main>
             <form name="users_update">
-                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'permissions' => $permissions, 'ladas' => $ladas] ); ?>
+                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'permissions' => $permissions] ); ?>
             </form>
         </main>
         <footer>

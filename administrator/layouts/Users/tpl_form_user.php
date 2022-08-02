@@ -3,44 +3,8 @@
     <div class="col-12 m-b-10">
         <div class="label">
             <label>
-                <input name="name" type="text"/>
-                <p class="description">Nombre</p>
-            </label>
-        </div>
-    </div>
-    <div class="col-12 m-b-10">
-        <div class="label">
-            <label>
                 <input name="username" type="text"/>
                 <p class="description">Usuario</p>
-            </label>
-        </div>
-    </div>
-    <div class="col-12 m-b-10">
-        <div class="label">
-            <label>
-                <input name="email" type="text"/>
-                <p class="description">Correo electrónico</p>
-            </label>
-        </div>
-    </div>
-    <div class="col-4 col-sm-5 p-r-10 m-b-10">
-        <div class="label">
-            <label>
-                <select name="prefix">
-                    <?php foreach ( $ladas as $value ): ?>
-                        <option value="<?= $value['lada'] ?>" <?= ( $value['lada'] === '52' ) ? 'selected' : '' ?> ><?= $value['name']['es'] ?> ( +<?= $value['lada'] ?> )</option>
-                    <?php endforeach; ?>
-                </select>
-                <p class="description">Prefijo</p>
-            </label>
-        </div>
-    </div>
-    <div class="col-8 col-sm-7 p-l-10 m-b-10">
-        <div class="label">
-            <label>
-                <input name="phone" type="tel" data-inputmask="'mask': '(999) 999-9999'"/>
-                <p class="description">Teléfono <small>(10 Dígitos)</small></p>
             </label>
         </div>
     </div>

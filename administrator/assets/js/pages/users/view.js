@@ -4,8 +4,41 @@ $( document ).ready(function ()
 {
     $.app.tableSearch();
 
-    $('input[type="tel"]').inputmask("(999) 999-9999");
+    /* Table
+    ------------------------------------------------------------------------------- */
+    $(document).find('table').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
 
+        ],
+        'columnDefs': [
+            {
+                'orderable': false,
+                'targets': '_all'
+            },
+            {
+                'className': 'text-left',
+                'targets': '_all'
+            }
+        ],
+        'order': [
+            // [4,'asc']
+        ],
+        'searching': false,
+        'info': false,
+        'paging': true,
+        'language': {
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+        }
+    });
+
+    /* Get
+    ------------------------------------------------------------------------------- */
     $('[data-ajax-user]').each(function ()
     {
         let self = $(this);
@@ -22,11 +55,7 @@ $( document ).ready(function ()
                 let modal = $('#users_update');
 
                 modal.find('[data-user-title]').html(response.data.username +' (#'+ response.data.id +')');
-                modal.find('input[name="name"]').val(response.data.name);
                 modal.find('input[name="username"]').val(response.data.username);
-                modal.find('input[name="email"]').val(response.data.email);
-                modal.find('select[name="prefix"]').val(response.data.prefix_phone);
-                modal.find('input[name="phone"]').val(response.data.phone);
                 modal.find('input[name="password"]').val('');
                 modal.find('select[name="level"]').val(response.data.level);
                 modal.find('input[type="checkbox"][name="permissions[]"]').prop( "checked", false );

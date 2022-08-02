@@ -26,9 +26,7 @@ class Users_model extends Model
 			]
 		], [
 			"users.id",
-			"users.name",
 			"users.username",
-			"users.email",
 			"levels.title (level)"
 		], [
 			"ORDER" => [
@@ -46,9 +44,6 @@ class Users_model extends Model
 		], [
 			"users.id",
 			"users.username",
-			"users.name",
-			"users.email",
-			"users.phone",
 			"levels.id (level)",
 			"users.permissions [Object]",
 		], [
@@ -62,9 +57,6 @@ class Users_model extends Model
 		{
 			$response = $response[0];
 
-			$response['prefix_phone'] = $response['phone'][0].$response['phone'][1];
-			$response['phone'] = substr($response['phone'], 2);
-
 			return $response;
 		}
 		else return [];
@@ -77,9 +69,6 @@ class Users_model extends Model
 
 		$this->database->insert('users', [
 			'username' => $data['username'],
-			'name' => $data['name'],
-			'email' => $data['email'],
-			'phone' => $data['prefix'].$data['phone'],
 			'password' => $this->security->create_password($data['password']),
 			'id_level' => $data['level'],
 			'permissions' => $data['permissions']
@@ -93,9 +82,6 @@ class Users_model extends Model
 
 		$update = [
 			'username' => $data['username'],
-			'name' => $data['name'],
-			'email' => $data['email'],
-			'phone' => $data['prefix'].$data['phone'],
 			'id_level' => $data['level'],
 			'permissions' => $data['permissions']
 		];

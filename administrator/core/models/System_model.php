@@ -20,14 +20,12 @@ class System_model extends Model
 		], [
 			"users.id",
 			"users.username",
-			"users.email",
 			"users.password",
 			"users.permissions [Object]",
 			"levels.code"
 		], [
 			"AND" => [
 				'OR' => [
-					// "email" => $data['username'],
 					"username" => $data['username']
 				],
 				"users.id_level[=]levels.id"
