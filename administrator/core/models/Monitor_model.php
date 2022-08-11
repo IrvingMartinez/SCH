@@ -56,9 +56,21 @@ class Monitor_model extends Model
 
     public function get_positions()
     {
-        return $this->database->select('positions', [
-            'id',
-            ''
-        ]);
+        return $this->database->select('positions', '*');
+    }
+
+    public function get_areas()
+    {
+        return $this->database->select('areas', '*');
+    }
+
+    public function get_cities()
+    {
+        return $this->database->select('cities', '*');
+    }
+
+    public function get_municipalities()
+    {
+        return $this->database->select('municipalities', '*');
     }
 }
