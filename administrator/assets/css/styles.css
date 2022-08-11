@@ -86,6 +86,51 @@ table td.no-line {
     border-top: none !important;
 }
 
+.table tbody th > figure,
+.table tbody td > figure {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.table tbody th > figure,
+.table tbody td > figure {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.table tbody td > figure > img {
+    width: auto;
+    height: 100%;
+}
+
+.table tbody td > span.success {
+    background-color: #4caf50;
+}
+
+.table tbody td > span.alert {
+    background-color: #f44336;
+}
+
+.table tbody td > span.success,
+.table tbody td > span.alert {
+    width: auto;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
 form[name="search"] input[type="search"] {
     display: block;
     width: 100%;

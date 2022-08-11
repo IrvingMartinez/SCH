@@ -20,7 +20,7 @@ class Dashboard_menu
         ];
 
         $menu[] = [
-           'name' => 'Monitoreo',
+           'name' => 'Empleados',
            'url' => 'index.php?c=monitor',
            'icon' => 'dripicons-user-group'
         ];

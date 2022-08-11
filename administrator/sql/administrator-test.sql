@@ -96,14 +96,7 @@ INSERT INTO `permissions` (`id`, `code`, `title`) VALUES
 (5, '{permissions_read}', 'Ver los permisos de usuario.'),
 (6, '{permissions_create}', 'Crear permisos de usuario.'),
 (7, '{permissions_delete}', 'Eliminar permisos de usuario.'),
-(8, '{blog_read}', 'Ver el blog.'),
-(9, '{blog_create}', 'Crear artículos en el blog.'),
-(10, '{blog_update}', 'Editar artículos en el blog.'),
-(11, '{blog_delete}', 'Eliminar artículos en el blog.'),
-(12, '{categories_blog_read}', 'Ver las categorías del blog.'),
-(13, '{categories_blog_create}', 'Crear categorías en el blog.'),
-(14, '{categories_blog_delete}', 'Eliminar categorías del blog.'),
-(15, '{help_development}', 'Ayuda para desarrolladores.');
+(8, '{help_development}', 'Ayuda para desarrolladores.');
 
 -- --------------------------------------------------------
 
@@ -159,9 +152,10 @@ CREATE TABLE `employees` (
     `cuip` text NOT NULL,
     `avatar` text COLLATE utf8_unicode_ci DEFAULT NULL,
     `status` tinyint(1) NOT NULL DEFAULT '1',
+    `num_card` text DEFAULT NULL,
+    `num_family` text DEFAULT NULL,
     `id_position` bigint(20) DEFAULT NULL,
     `id_area` bigint(20) DEFAULT NULL,
-    `id_card` bigint(20) DEFAULT NULL,
     `id_city` bigint(20) DEFAULT NULL,
     `id_municipality` bigint(20) DEFAULT NULL
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -219,19 +213,6 @@ CREATE TABLE `cities` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cities`
---
-
-CREATE TABLE `cards` (
-  `id` bigint(20) NOT NULL,
-  `num_card` text DEFAULT NULL,
-  `num_family` text DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `entries`
 --
 
@@ -244,7 +225,6 @@ CREATE TABLE `entries` (
   `media` text DEFAULT NULL,
   `status_entry` set('0','1','2','3','4') NOT NULL DEFAULT '0' COMMENT '0-regular, 1-retardo, 2-falta, 3-falta_justificada, 4-retardo_justificado',
   `status_response` set('0','1','2','3','4') NOT NULL DEFAULT '0' COMMENT '0-regular, 1-pendiente_maganer, 2-pendiente_rh, 3-contestada, 4-archivada',
-  `id_card` bigint(20) DEFAULT NULL,
   `id_employee` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -317,7 +297,6 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`),
   ADD KEY `position` (`id_position`),
   ADD KEY `area` (`id_area`),
-  ADD KEY `card` (`id_card`),
   ADD KEY `city` (`id_city`),
   ADD KEY `municipality` (`id_municipality`);
 
@@ -346,17 +325,10 @@ ALTER TABLE `cities`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `cards`
---
-ALTER TABLE `cards`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `entries`
 --
 ALTER TABLE `entries`
     ADD PRIMARY KEY (`id`),
-    ADD KEY `level` (`id_card`),
     ADD KEY `employee` (`id_employee`);
 
 --
@@ -430,13 +402,7 @@ ALTER TABLE `cities`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
--- AUTO_INCREMENT de la tabla `cards`
---
-ALTER TABLE `cards`
-    MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
--- AUTO_INCREMENT de la tabla `cards`
+-- AUTO_INCREMENT de la tabla `entries`
 --
 ALTER TABLE `entries`
     MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
@@ -464,16 +430,14 @@ ALTER TABLE `sessions`
 ALTER TABLE `employees`
     ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`id_position`) REFERENCES `positions` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
     ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`id_area`) REFERENCES `areas` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`id_card`) REFERENCES `cards` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `employees_ibfk_4` FOREIGN KEY (`id_city`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `employees_ibfk_5` FOREIGN KEY (`id_municipality`) REFERENCES `municipalities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+    ADD CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`id_city`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+    ADD CONSTRAINT `employees_ibfk_4` FOREIGN KEY (`id_municipality`) REFERENCES `municipalities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Filtros para la tabla `entries`
 --
 ALTER TABLE `entries`
-    ADD CONSTRAINT `entries_ibfk_1` FOREIGN KEY (`id_card`) REFERENCES `cards` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `entries_ibfk_2` FOREIGN KEY (`id_employee`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+    ADD CONSTRAINT `entries_ibfk_1` FOREIGN KEY (`id_employee`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Filtros para la tabla `users`
