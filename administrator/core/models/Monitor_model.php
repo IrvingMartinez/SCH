@@ -10,24 +10,49 @@ class Monitor_model extends Model
 
     /* Selects
 	------------------------------------------------------------------------------- */
+
+    public function get_positions()
+    {
+        return $this->database->select('positions', '*');
+    }
+
+    public function get_areas()
+    {
+        return $this->database->select('areas', '*');
+    }
+
+    public function get_municipalities()
+    {
+        return $this->database->select('municipalities', '*');
+    }
+
 	public function get_all_employees()
 	{
 		return $this->database->select('employees', [
-			'id',
-			'name',
-			'ap_pat',
-			'ap_mat',
-			'num_employee',
-			'avatar',
-			'status'
+            "[>]positions" => [
+                "id_position" => "id"
+            ],
+            "[>]areas" => [
+                "id_area" => "id"
+            ]
+        ], [
+			'employees.id',
+			'employees.name',
+			'employees.ap_pat',
+			'employees.ap_mat',
+			'employees.num_employee',
+			'employees.avatar',
+			'employees.status',
+            'positions.title (position)',
+            'areas.title (area)'
 		], [
 			'ORDER' => [
-				'employees.name' => 'ASC'
+				'name' => 'ASC'
 			]
 		]);
 	}
 
-    public function get_data_employee( $id = null )
+    public function get_employee( $id = null )
     {
         if ( is_null($id) )
             return null;
@@ -43,9 +68,9 @@ class Monitor_model extends Model
             'avatar',
             'status',
             'num_card',
+            'num_family',
             'id_position',
             'id_area',
-            'id_city',
             'id_municipality'
         ], [
             'id' => $id
@@ -54,23 +79,60 @@ class Monitor_model extends Model
         return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
     }
 
-    public function get_positions()
-    {
-        return $this->database->select('positions', '*');
-    }
+    public function save_employee( $data = [], $edit = false )
+	{
+		if ( empty($data) )
+		/*  */ return null;
 
-    public function get_areas()
-    {
-        return $this->database->select('areas', '*');
-    }
+		$config_uploads = [
+			'path_uploads' => PATH_UPLOADS,
+			'set_name' => 'FILE_NAME_LAST_RANDOM'
+		];
 
-    public function get_cities()
-    {
-        return $this->database->select('cities', '*');
-    }
+		$save = [
+			'name' => $data['name'],
+			'ap_pat' => $data['ap_pat'],
+			'ap_mat' => $data['ap_mat'],
+			'curp' => $data['curp'],
+			'rfc' => $data['rfc'],
+			'num_employee' => $data['num_employee'],
+			'cuip' => $data['cuip'],
+			'status' => $data['status'],
+			'num_card' => $data['num_card'],
+			'num_family' => $data['num_family'],
+			'id_position' => $data['position'],
+			'id_area' => $data['area'],
+			'id_municipality' => $data['municipality']
+		];
 
-    public function get_municipalities()
-    {
-        return $this->database->select('municipalities', '*');
-    }
+		if ( !empty($data['image_cover']['name']) )
+		{
+			$data['image_cover'] = Upload::upload_file($data['image_cover'], $config_uploads);
+			$save['avatar'] = $data['image_cover']['file'];
+		}
+
+		if ( $edit == false )
+		{
+			$this->database->insert('employees', $save);
+
+			if ( $this->database->id() )
+			/*  */ return [ 'status' => 'OK' ];
+			else
+			{
+				return [
+					'status' => 'fatal_error',
+					'message' => 'Ocurrió un problema al guardar el empleado.'
+				];
+			}
+		}
+
+		if ( $edit == true )
+		{
+			$this->database->update('employees', $save, [
+				'id' => $data['id']
+			]);
+
+			return [ 'status' => 'OK' ];
+		}
+	}
 }

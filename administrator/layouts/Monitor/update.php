@@ -2,7 +2,7 @@
 defined('_EXEC') or die;
 
 // Pages
-$this->dependencies->add(['js', '{$path.js}pages/monitor/create.js']);
+$this->dependencies->add(['js', '{$path.js}pages/monitor/update.js']);
 ?>
 <main class="wrapper">
     <div class="container-fluid">
@@ -20,14 +20,15 @@ $this->dependencies->add(['js', '{$path.js}pages/monitor/create.js']);
                         <li class="breadcrumb-item active">Nuevo empleado</li>
                     </ol>
 
-                    <h4 class="page-title">Crear nuevo empleado</h4>
+
+                    <h4 class="page-title">Editar: <?= $employee['name'] ?> &nbsp <?= $employee['ap_pat'] ?>&nbsp <?= $employee['ap_mat']?></h4>
                 </div>
             </div>
         </div>
         <!-- end page title end breadcrumb -->
 
-        <form name="create_employee" class="row font-14">
-            <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Monitor/tpl_form_employee.php'), ['positions' => $positions, 'areas' => $areas, 'municipalities' => $municipalities] ); ?>
+        <form name="update_employee" class="row font-14">
+            <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Monitor/tpl_form_employee.php'), ['positions' => $positions, 'areas' => $areas, 'municipalities' => $municipalities, 'employee' => $employee] ); ?>
         </form>
     </div>
 </main>

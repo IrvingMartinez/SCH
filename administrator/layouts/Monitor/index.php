@@ -60,9 +60,9 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
                                     <tr>
                                         <th width="40px"></th>
                                         <th width="150px"># Empleado</th>
-                                        <th>Nombre</th>
-                                        <th>Ap. Paterno</th>
-                                        <th>Ap. Materno</th>
+                                        <th>Nombre Completo</th>
+                                        <th>Puesto</th>
+                                        <th>Área</th>
                                         <th width="100px">Estado</th>
                                         <th></th>
                                     </tr>
@@ -82,15 +82,15 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
                                             <figure><img src="<?= ( isset($value['avatar']) ) ? '{$path.root_uploads}'. $value['avatar'] : '{$path.images}empty.png'; ?>"></figure>
                                         </td>
                                         <td data-title="Num. Empleado">#<?= $value['num_employee'] ?></td>
-                                        <td data-title="Nombre"><?= $value['name'] ?></td>
-                                        <td data-title="Ap. Paterno"><?= $value['ap_pat'] ?></td>
-                                        <td data-title="Ap. Materno"><?= $value['ap_mat'] ?></td>
+                                        <td data-title="Nombre"><?= $value['name'] ?> &nbsp <?= $value['ap_pat'] ?> &nbsp <?= $value['ap_mat'] ?></td>
+                                        <td data-title="Puesto"><?= $value['position'] ?></td>
+                                        <td data-title="Área"><?= $value['area'] ?></td>
                                         <td><?= ( ( $value['status'] == true ) ? '<span class="success">Activado</span>' : '<span class="alert">Desactivado</span>' ) ?></td>
 
                                         <td data-title="Acciones">
                                             <div class="content-cell">
                                                 <div class="button-items text-right">
-                                                    <a href="javascript:void(0);" class="btn waves-effect waves-light" data-ajax-user="<?= $value['id'] ?>">Asignar tarjeta</a>
+                                                    <a href="index.php?c=monitor&m=update_employee&id=<?= $value['id'] ?>" class="btn waves-effect waves-light">Ver</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -105,25 +105,3 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
         </div>
     </div>
 </main>
-
-<!-- Crear nuevo empleado -->
-<section id="employee_create" class="modal size-big" data-modal="employee_create">
-    <div class="content">
-        <header>Agregar nuevo empleado</header>
-        <main>
-            <form name="employee_create">
-                <?php //echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Monitor/tpl_form_employee.php')); ?>
-            </form>
-        </main>
-        <footer>
-            <div class="action-buttons text-right">
-                <button class="btn btn-link" button-close><small>Cerrar sin crear</small></button>
-                <?php if ( in_array('{employee_create}', Session::get_value('session_permissions')) ): ?>
-                    <button class="btn btn-primary waves-effect waves-light" button-submit>Crear empleado</button>
-                <?php else: ?>
-                    <button class="btn btn-primary waves-effect waves-light" disabled>No tienes permisos para crear un empleado.</button>
-                <?php endif; ?>
-            </div>
-        </footer>
-    </div>
-</section>

@@ -1176,7 +1176,7 @@ div.label label .bootstrap-touchspin > span.bootstrap-touchspin-postfix {
 }
 
 .upload_image_preview figure {
-    height: 200px;
+    height: 300px;
     pointer-events: none;
 }
 

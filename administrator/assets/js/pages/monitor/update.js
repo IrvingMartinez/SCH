@@ -2,7 +2,7 @@ $( document ).ready(function ()
 {
     $.app.uploadImagePreview()
 
-    $( document ).on('imageIsValid', 'input[type="file"]', function ( event)
+    $( document ).on('imageIsValid', 'input[type="file"]', function ( event )
     {
         let self = event.detail.self;
         let container = event.detail.container;
@@ -11,7 +11,7 @@ $( document ).ready(function ()
         container.prepend('<figure class="m-0"><img class="img-fluid" src="'+ event.detail.image +'"></figure>');
     });
 
-    $('form[name="create_employee"]').ajaxSubmit({
+    $('form[name="update_employee"]').ajaxSubmit({
         textReDrawButton: true,
         onFatalError: function ( response )
         {
@@ -20,7 +20,7 @@ $( document ).ready(function ()
         success: function ( response )
         {
             swal({
-                title: 'Se agregó el empleado.',
+                text: 'Se actualizó el empleado.',
                 type: 'success',
                 showLoaderOnConfirm: true,
                 allowOutsideClick: false,

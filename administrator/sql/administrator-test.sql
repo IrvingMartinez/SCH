@@ -156,7 +156,6 @@ CREATE TABLE `employees` (
     `num_family` text DEFAULT NULL,
     `id_position` bigint(20) DEFAULT NULL,
     `id_area` bigint(20) DEFAULT NULL,
-    `id_city` bigint(20) DEFAULT NULL,
     `id_municipality` bigint(20) DEFAULT NULL
 )   ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -192,19 +191,6 @@ CREATE TABLE `areas` (
 --
 
 CREATE TABLE `municipalities` (
-  `id` bigint(20) NOT NULL,
-  `code` varchar(50) DEFAULT NULL,
-  `title` text DEFAULT NULL,
-  `id_cities` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `cities`
---
-
-CREATE TABLE `cities` (
   `id` bigint(20) NOT NULL,
   `code` varchar(50) DEFAULT NULL,
   `title` text DEFAULT NULL
@@ -297,7 +283,6 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`),
   ADD KEY `position` (`id_position`),
   ADD KEY `area` (`id_area`),
-  ADD KEY `city` (`id_city`),
   ADD KEY `municipality` (`id_municipality`);
 
 --
@@ -317,13 +302,6 @@ ALTER TABLE `areas`
 --
  ALTER TABLE `municipalities`
   ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `cities`
---
-ALTER TABLE `cities`
-  ADD PRIMARY KEY (`id`);
-
 --
 -- Indices de la tabla `entries`
 --
@@ -396,12 +374,6 @@ ALTER TABLE `municipalities`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
--- AUTO_INCREMENT de la tabla `municipalities`
---
-ALTER TABLE `cities`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
---
 -- AUTO_INCREMENT de la tabla `entries`
 --
 ALTER TABLE `entries`
@@ -430,8 +402,7 @@ ALTER TABLE `sessions`
 ALTER TABLE `employees`
     ADD CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`id_position`) REFERENCES `positions` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
     ADD CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`id_area`) REFERENCES `areas` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`id_city`) REFERENCES `cities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `employees_ibfk_4` FOREIGN KEY (`id_municipality`) REFERENCES `municipalities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+    ADD CONSTRAINT `employees_ibfk_3` FOREIGN KEY (`id_municipality`) REFERENCES `municipalities` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 
 --
 -- Filtros para la tabla `entries`
