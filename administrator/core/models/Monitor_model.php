@@ -26,7 +26,7 @@ class Monitor_model extends Model
         return $this->database->select('municipalities', '*');
     }
 
-	public function get_all_employees()
+	public function get_employees()
 	{
 		return $this->database->select('employees', [
             "[>]positions" => [
@@ -135,4 +135,67 @@ class Monitor_model extends Model
 			return [ 'status' => 'OK' ];
 		}
 	}
+
+    public function create_position( $data = null )
+    {
+        if ( is_null($data) )
+            return null;
+
+        $this->database->insert('positions', [
+            'code' => $data['code'],
+            'title' => $data['title']
+        ]);
+    }
+
+    public function create_area( $data = null )
+    {
+        if ( is_null($data))
+        return null;
+
+        $this->database->insert('areas', [
+            'code' => $data['code'],
+            'title' => $data['title']
+        ]);
+    }
+
+    public function create_municipality( $data = null )
+    {
+        if ( is_null($data))
+        return null;
+
+        $this->database->insert('municipalities', [
+            'code' => $data['code'],
+            'title' => $data['title']
+        ]);
+    }
+
+    public function delete_position( $data = null )
+    {
+        if ( is_null($data) )
+            return null;
+
+        $this->database->delete('positions', [
+            'id' => $data['id']
+        ]);
+    }
+
+    public function delete_area( $data = null )
+    {
+        if ( is_null($data) )
+            return null;
+
+        $this->database->delete('areas', [
+            'id' => $data['id']
+        ]);
+    }
+
+    public function delete_municipality( $data = null )
+    {
+        if ( is_null($data) )
+            return null;
+
+        $this->database->delete('municipalities', [
+            'id' => $data['id']
+        ]);
+    }
 }

@@ -12,6 +12,7 @@ class Set_users_permissions_vkye_adm
             'Monitor/index' => 'ALL',
             'Monitor/create_employee' => 'ALL',
             'Monitor/update_employee' => 'ALL',
+            'Monitor/create_position' => 'ALL',
             'Help/index' => ['{help_development}'],
             'Users/index' => ['{users_read}'],
             'Users/create_user' => ['{users_create}'],

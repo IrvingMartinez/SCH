@@ -10,9 +10,12 @@ class Monitor_controller extends Controller
 
     public function index( $params )
     {
-    	global $employees;
+    	global $employees, $positions, $areas, $municipalities;
 
-    	$employees = $this->model->get_all_employees();
+    	$employees = $this->model->get_employees();
+    	$positions = $this->model->get_positions();
+    	$areas = $this->model->get_areas();
+    	$municipalities = $this->model->get_municipalities();
 
     	define('_title', 'Lista de empleados registrados en {$vkye_webpage}');
     	echo $this->view->render($this, 'index');
@@ -28,7 +31,7 @@ class Monitor_controller extends Controller
 		$post['num_employee'] = ( isset($_POST['num_employee']) && !empty($_POST['num_employee']) ) ? $_POST['num_employee'] : null;
 		$post['cuip'] = ( isset($_POST['cuip']) && !empty($_POST['cuip']) ) ? $_POST['cuip'] : null;
 		$post['image_cover'] = ( isset($_FILES['image_cover']) && !empty($_FILES['image_cover']) ) ? $_FILES['image_cover'] : null;
-		$post['status'] = ( isset($_POST['status']) && !empty($_POST['status']) ) ? $_POST['status'] : null;
+		$post['status'] = ( isset($_POST['status']) && !empty($_POST['status']) ) ?  true : false;
 		$post['num_card'] = ( isset($_POST['num_card']) && !empty($_POST['num_card']) ) ? $_POST['num_card'] : null;
 		$post['num_family'] = ( isset($_POST['num_family']) && !empty($_POST['num_family']) ) ? $_POST['num_family'] : null;
 		$post['position'] = ( isset($_POST['position']) && !empty($_POST['position']) ) ? $_POST['position'] : null;
@@ -195,5 +198,43 @@ class Monitor_controller extends Controller
         }
         else
 			/*  */ Errors::http('404');
+    }
+
+    public function create_position()
+    {
+        /* Action Ajax ------------------------------------------------------ */
+		if ( Format::exist_ajax_request() )
+		{
+			$post['code'] = ( isset($_POST['code']) && !empty($_POST['code']) ) ? $_POST['code'] : null;
+			$post['title'] = ( isset($_POST['title']) && !empty($_POST['title']) ) ? $_POST['title'] : null;
+
+			$labels = [];
+
+			if ( is_null($post['code']) )
+				array_push($labels, ['code', 'Debes escribir el puesto de trabajo.']);
+
+			if ( is_null($post['title']) )
+				array_push($labels, ['title', 'Escribe el nombre del puesto.']);
+
+			if ( !empty($labels) )
+			{
+				echo json_encode([
+					'status' => 'error',
+					'labels' => $labels
+				], JSON_PRETTY_PRINT);
+			}
+			else
+			{
+				$this->model->create_permission($post);
+
+				echo json_encode([
+					'status' => 'OK',
+					'redirect' => 'index.php?c=monitor'
+				], JSON_PRETTY_PRINT);
+			}
+		}
+		else
+			Errors::http('404');
+
     }
 }
