@@ -143,8 +143,13 @@
                     <div class="label">
                         <label>
                             <select name="status">
-                                <option value="1">Activado</option>
-                                <option value="0">Desactivado</option>
+                                <?php if ($employee['status'] == '0'): ?>
+                                    <option value="<?= ($employee['status'] == '0') ? 'selected' : '' ?>">Desactivado</option>
+                                    <option value="<?= ($employee['status'] == '1') ? 'selected' : '' ?>">Activado</option>
+                                <?php else: ?>
+                                    <option value="<?= ($employee['status'] == '1') ? 'selected' : '' ?>">Activado</option>
+                                    <option value="<?= ($employee['status'] == '0') ? 'selected' : '' ?>">Desactivado</option>
+                                <?php endif; ?>
                             </select>
                         </label>
                     </div>
