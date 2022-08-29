@@ -80,6 +80,49 @@ public function get_entries_pending(){
     );
 }
 
+// Función de búsqueda en base al id
+
+public function get_employee_report( $id = null )
+{
+
+    if(is_null($id))
+        return null;
+
+        $response = $this->database->select(
+            // Tabla a llamar
+            "employees",
+            [
+                "[>]entries" => ["id" => "id_employee"],
+                "[>]areas" => ["id_area" => "id"],
+                "[>]municipalities" => ["id_municipality" => "id"],
+                "[>]positions" => ["id_position" => "id"]
+            ],[
+                // Fetch from Employees
+                'employees.name', 'employees.ap_pat', 'employees.ap_mat',
+                'employees.cuip', 'employees.num_card',
+                'employees.num_employee',
+                'employees.curp',
+                'employees.num_family',
+                'employees.rfc',
+                // Fetch from Entries
+                'entries.entry_time',
+                'entries.check_time',
+                'entries.status_entry',
+                // Fetch from Municipalities, Area and Position
+                'areas.title',
+                'municipalities.code'
+            ],[
+                'entries.id' => [$id]
+            ]
+        );
+
+        return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
+}
+
+// Función para contestar la incidencia reportada, y enviarla a RH
+
+/* PENDIENTE */
+
 // Pantalla de Incidencias a ser Archivadas
 
 public function get_entries_answered(){
