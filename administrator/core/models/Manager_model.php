@@ -100,6 +100,7 @@ public function get_employee_report( $id = null )
                 // Fetch from Employees
                 'employees.name', 'employees.ap_pat', 'employees.ap_mat',
                 'employees.cuip', 'employees.num_card',
+                'employees.avatar',
                 'employees.num_employee',
                 'employees.curp',
                 'employees.num_family',
