@@ -109,6 +109,8 @@ public function get_employee_report( $id = null )
                 'entries.entry_time',
                 'entries.check_time',
                 'entries.status_entry',
+                'entries.status_response',
+                'entries.desc_incidence',
                 // Fetch from Municipalities, Area and Position
                 'areas.title',
                 'municipalities.code'

@@ -103,19 +103,30 @@
 
                                   <br>
 
+                                  <?php if($employee_report['status_response']=='1' && empty($employee_report['desc_incidence'])): ?>
+
                                   <textarea placeholder="Describa detalles de la incidencia..." rows="3" cols="173" name="incidence_response" maxlength="255"></textarea>
+
+                                  <?php endif; ?>
+                                  <?php if($employee_report['status_response']=='1'):?>
+
+                                      <p>&nbsp&nbsp<?= $employee_report['desc_incidence']?></p>
+
+                                  <?php endif; ?>
+
+                                  <table id="entries_table" class="table m-b-0" style="font size: 14px;">
+                                      <thead>
+                                          <tr>
+                                              <th>Evidencia de Incidencia</th>
+                                          </tr>
+                                      </thead>
+                                  </table>
+
+                                  <br>
 
                               </div>
 
-                              <table id="entries_table" class="table m-b-0" style="font size: 14px;">
-                                  <thead>
-                                      <tr>
-                                          <th>Evidencia de Incidencia</th>
-                                      </tr>
-                                  </thead>
-                              </table>
 
-                              <br>
 
                               <div class="container col-md.6">
                                   <div class="mb-5">
