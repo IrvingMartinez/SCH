@@ -128,7 +128,8 @@ public function get_employee_report( $id = null )
 
 // Pantalla de Incidencias a ser Archivadas
 
-public function get_entries_answered(){
+public function get_entries_answered()
+{
     return $this->database->select(
         // Tabla a llamar
         "entries",
@@ -155,20 +156,18 @@ public function get_entries_answered(){
 
 // Update de Incidencias cuando Manager contesta a RH
 
-// public function update_entries_answer( $data ){
-//       $this->database->update(
-//           // Tabla a hacer update
-//           'entries',
-//           [
-//               'status_response' => '2',
-//               'desc_incidence' => $data['desc_incidence'],
-//               'desc_response' => $data['desc_response'],
-//               'media' => $data['media']
-//           ],[
-//               'id' => $data['id']
-//           ]
-//       );
-// }
+public function update_manager($desc_incidence, $media, $id_emp)
+{
+    return $this->database->update(
+        'entries',
+        [
+            'desc_incidence' => $desc_incidence,
+            'media' => $media
+        ],[
+            'id' => $id_emp
+        ]
+    );
+}
 
 // Update cuando Manager archiva la Incidencia en entries
 

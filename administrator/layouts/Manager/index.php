@@ -149,7 +149,7 @@
                                   <?php endif; ?>
                                   <!-- Botones de Acción para estado del reporte  -->
                                   <td>
-                                      <button class="btn btn-primary">Ver Reporte</button>
+                                      <a href="index.php?c=manager&m=incidence_report&id=<?=$value['id']?>" class="btn btn-primary">Reportar Incidencia</a>
                                   </td>
                               </tr>
                               <?php endforeach; ?>
@@ -205,8 +205,7 @@
                                               <td data-title="status_response">Esto es un error</td>
                                           <?php endif;?>
                                           <td data-title="view_button">
-                                              <button class="btn btn-primary">Pendiente de Revisión</button>
-                                              <button class="btn btn-success">Archivar Reporte</button>
+                                              <a href="index.php?c=manager&m=incidence_report&id=<?=$value['id']?>" class="btn btn-primary">Reportar Incidencia</a>
                                           </td>
                                   </tr>
                               <?php endforeach; ?>

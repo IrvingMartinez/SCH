@@ -18,9 +18,21 @@
                 </li>
               </ol>
 
-              <h4 class="page-title">
-                Formulario de Incidencias - Reporte Inicial
-              </h4>
+              <?php if($employee_report['status_response']=='1'):?>
+                  <h4 class="page-title">
+                    Formulario de Incidencias - Reporte Inicial
+                  </h4>
+              <?php endif;?>
+              <?php if($employee_report['status_response']=='2'):?>
+                  <h4 class="page-title">
+                      Formulario de Incidencias - Esperando Respuesta
+                  </h4>
+              <?php endif;?>
+              <?php if($employee_report['status_response']=='3'):?>
+                  <h4 class="page-title">
+                      Formulario de Incidenicas - Pendiente de Revisión
+                  </h4>
+              <?php endif;?>
 
               <br>
 
@@ -108,7 +120,7 @@
                                   <textarea placeholder="Describa detalles de la incidencia..." rows="3" cols="173" name="incidence_response" maxlength="255"></textarea>
 
                                   <?php endif; ?>
-                                  <?php if($employee_report['status_response']=='1'):?>
+                                  <?php if($employee_report['status_response']=='2' /*&& !empty($employee_report['desc_incidence'])*/):?>
 
                                       <p>&nbsp&nbsp<?= $employee_report['desc_incidence']?></p>
 
