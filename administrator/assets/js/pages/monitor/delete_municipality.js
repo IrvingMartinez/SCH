@@ -1,13 +1,13 @@
 $( document ).ready(function ()
 {
-    $('[data-ajax-delete-position]').on('click', function()
+    $('[data-ajax-delete-municipality]').on('click', function()
     {
         let self = $(this);
         let message = '';
         let xhr_status = '';
 
         swal({
-            text: 'Se eliminará el puesto.',
+            text: 'Se eliminará el municipio.',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#ff5560',
@@ -20,7 +20,7 @@ $( document ).ready(function ()
             {
                 return new Promise(function (resolve)
                 {
-                    $.post('index.php?c=monitor&m=delete_position', { id: self.data('ajax-delete-position') }, function(data, status, jqXHR)
+                    $.post('index.php?c=monitor&m=delete_municipality', { id: self.data('ajax-delete-municipality') }, function(data, status, jqXHR)
                     {
                         if ( data.status == 'OK' )
                         {
@@ -45,7 +45,7 @@ $( document ).ready(function ()
             {
                 swal({
                     type: 'success',
-                    text: 'Se eliminó el puesto.',
+                    text: 'Se eliminó el municipio.',
                     preConfirm: function ()
                     {
                         return new Promise(function (resolve)

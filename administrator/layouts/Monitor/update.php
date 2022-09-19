@@ -17,11 +17,8 @@ $this->dependencies->add(['js', '{$path.js}pages/monitor/update.js']);
                         <li class="breadcrumb-item">
                             <a href="index.php?c=monitor">Empleados</a>
                         </li>
-                        <li class="breadcrumb-item active">Nuevo empleado</li>
+                        <li class="breadcrumb-item active">Editar empleado</li>
                     </ol>
-
-
-                    <h4 class="page-title">Editar: <?= $employee['name'] ?> &nbsp <?= $employee['ap_pat'] ?>&nbsp <?= $employee['ap_mat']?></h4>
                 </div>
             </div>
         </div>

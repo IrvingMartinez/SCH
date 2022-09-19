@@ -1,17 +1,7 @@
 $( document ).ready(function ()
 {
-    $.app.uploadImagePreview()
-
-    $( document ).on('imageIsValid', 'input[type="file"]', function ( event)
-    {
-        let self = event.detail.self;
-        let container = event.detail.container;
-
-        container.find('> figure').remove();
-        container.prepend('<figure class="m-0"><img class="img-fluid" src="'+ event.detail.image +'"></figure>');
-    });
-
-    $('form[name="create_employee"]').ajaxSubmit({
+    $('form[name="create_position"]').ajaxSubmit({
+        url: 'index.php?c=monitor&m=create_position',
         textReDrawButton: true,
         onFatalError: function ( response )
         {
@@ -20,7 +10,7 @@ $( document ).ready(function ()
         success: function ( response )
         {
             swal({
-                title: 'Se agregó el empleado.',
+                text: 'Se agregó el puesto.',
                 type: 'success',
                 showLoaderOnConfirm: true,
                 allowOutsideClick: false,
@@ -39,4 +29,5 @@ $( document ).ready(function ()
             });
         }
     });
+
 });
