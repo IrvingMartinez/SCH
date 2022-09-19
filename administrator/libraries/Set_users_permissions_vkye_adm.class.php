@@ -8,6 +8,7 @@ class Set_users_permissions_vkye_adm
         $arr = [
             'Index/index' => 'ALL',
             'Manager/index' => 'ALL',
+            'Manager/incidence_report' => 'ALL',
             'Schedule/index' => 'ALL',
             'Monitor/index' => 'ALL',
             'Monitor/create_employee' => 'ALL',

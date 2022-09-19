@@ -80,9 +80,56 @@ public function get_entries_pending(){
     );
 }
 
+// Función de búsqueda en base al id
+
+public function get_employee_report( $id = null )
+{
+
+    if(is_null($id))
+        return null;
+
+        $response = $this->database->select(
+            // Tabla a llamar
+            "employees",
+            [
+                "[>]entries" => ["id" => "id_employee"],
+                "[>]areas" => ["id_area" => "id"],
+                "[>]municipalities" => ["id_municipality" => "id"],
+                "[>]positions" => ["id_position" => "id"]
+            ],[
+                // Fetch from Employees
+                'employees.name', 'employees.ap_pat', 'employees.ap_mat',
+                'employees.cuip', 'employees.num_card',
+                'employees.avatar',
+                'employees.num_employee',
+                'employees.curp',
+                'employees.num_family',
+                'employees.rfc',
+                // Fetch from Entries
+                'entries.entry_time',
+                'entries.check_time',
+                'entries.status_entry',
+                'entries.status_response',
+                'entries.desc_incidence',
+                // Fetch from Municipalities, Area and Position
+                'areas.title',
+                'municipalities.code'
+            ],[
+                'entries.id' => [$id]
+            ]
+        );
+
+        return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
+}
+
+// Función para contestar la incidencia reportada, y enviarla a RH
+
+/* PENDIENTE */
+
 // Pantalla de Incidencias a ser Archivadas
 
-public function get_entries_answered(){
+public function get_entries_answered()
+{
     return $this->database->select(
         // Tabla a llamar
         "entries",
@@ -109,20 +156,18 @@ public function get_entries_answered(){
 
 // Update de Incidencias cuando Manager contesta a RH
 
-// public function update_entries_answer( $data ){
-//       $this->database->update(
-//           // Tabla a hacer update
-//           'entries',
-//           [
-//               'status_response' => '2',
-//               'desc_incidence' => $data['desc_incidence'],
-//               'desc_response' => $data['desc_response'],
-//               'media' => $data['media']
-//           ],[
-//               'id' => $data['id']
-//           ]
-//       );
-// }
+public function update_manager($desc_incidence, $media, $id_emp)
+{
+    return $this->database->update(
+        'entries',
+        [
+            'desc_incidence' => $desc_incidence,
+            'media' => $media
+        ],[
+            'id' => $id_emp
+        ]
+    );
+}
 
 // Update cuando Manager archiva la Incidencia en entries
 

@@ -25,4 +25,20 @@ class Manager_controller extends Controller
     echo $this->view->render($this, 'index');
   }
 
+  public function incidence_report()
+  {
+
+      // Agregar función de datos de empleado para vista en formulario
+
+      $data = $_GET['id'];
+
+      global $employee_report;
+
+      $employee_report = $this->model->get_employee_report($data);
+      // Crear función send_report() para actualizar los datos de incidencia
+
+      define('_title', 'Vista de Creación de Reportes en {$vkye_webpage}');
+      echo $this->view->render($this, 'new');
+  }
+
 }
