@@ -225,7 +225,7 @@ class Monitor_controller extends Controller
 			}
 			else
 			{
-				$this->model->create_permission($post);
+				$this->model->create_position($post);
 
 				echo json_encode([
 					'status' => 'OK',
@@ -237,4 +237,152 @@ class Monitor_controller extends Controller
 			Errors::http('404');
 
     }
+
+    public function create_area()
+    {
+        /* Action Ajax ------------------------------------------------------ */
+		if ( Format::exist_ajax_request() )
+		{
+			$post['code'] = ( isset($_POST['code']) && !empty($_POST['code']) ) ? $_POST['code'] : null;
+			$post['title'] = ( isset($_POST['title']) && !empty($_POST['title']) ) ? $_POST['title'] : null;
+
+			$labels = [];
+
+			if ( is_null($post['code']) )
+				array_push($labels, ['code', 'Debes escribir el área de trabajo.']);
+
+			if ( is_null($post['title']) )
+				array_push($labels, ['title', 'Escribe el nombre del área.']);
+
+			if ( !empty($labels) )
+			{
+				echo json_encode([
+					'status' => 'error',
+					'labels' => $labels
+				], JSON_PRETTY_PRINT);
+			}
+			else
+			{
+				$this->model->create_area($post);
+
+				echo json_encode([
+					'status' => 'OK',
+					'redirect' => 'index.php?c=monitor'
+				], JSON_PRETTY_PRINT);
+			}
+		}
+		else
+			Errors::http('404');
+
+    }
+
+    public function create_municipality()
+    {
+        /* Action Ajax ------------------------------------------------------ */
+		if ( Format::exist_ajax_request() )
+		{
+			$post['code'] = ( isset($_POST['code']) && !empty($_POST['code']) ) ? $_POST['code'] : null;
+			$post['title'] = ( isset($_POST['title']) && !empty($_POST['title']) ) ? $_POST['title'] : null;
+
+			$labels = [];
+
+			if ( is_null($post['code']) )
+				array_push($labels, ['code', 'Debes escribir el municipio.']);
+
+			if ( is_null($post['title']) )
+				array_push($labels, ['title', 'Escribe el nombre del municipio.']);
+
+			if ( !empty($labels) )
+			{
+				echo json_encode([
+					'status' => 'error',
+					'labels' => $labels
+				], JSON_PRETTY_PRINT);
+			}
+			else
+			{
+				$this->model->create_municipality($post);
+
+				echo json_encode([
+					'status' => 'OK',
+					'redirect' => 'index.php?c=monitor'
+				], JSON_PRETTY_PRINT);
+			}
+		}
+		else
+			Errors::http('404');
+
+    }
+
+    public function delete_position()
+	{
+		header('Content-type: application/json');
+
+		$post['id'] = ( isset($_POST['id']) && !empty($_POST['id']) ) ? $_POST['id'] : null;
+
+		if ( is_null($post['id']) )
+		{
+			echo json_encode([
+				'status' => 'error',
+				'message' => 'Debes elegir un puesto.'
+			], JSON_PRETTY_PRINT);
+		}
+		else
+		{
+			$this->model->delete_position($post);
+
+			echo json_encode([
+				'status' => 'OK',
+				'redirect' => 'index.php?c=monitor'
+			], JSON_PRETTY_PRINT);
+		}
+	}
+
+    public function delete_area()
+	{
+		header('Content-type: application/json');
+
+		$post['id'] = ( isset($_POST['id']) && !empty($_POST['id']) ) ? $_POST['id'] : null;
+
+		if ( is_null($post['id']) )
+		{
+			echo json_encode([
+				'status' => 'error',
+				'message' => 'Debes elegir un área.'
+			], JSON_PRETTY_PRINT);
+		}
+		else
+		{
+			$this->model->delete_area($post);
+
+			echo json_encode([
+				'status' => 'OK',
+				'redirect' => 'index.php?c=monitor'
+			], JSON_PRETTY_PRINT);
+		}
+	}
+
+    public function delete_municipality()
+	{
+		header('Content-type: application/json');
+
+		$post['id'] = ( isset($_POST['id']) && !empty($_POST['id']) ) ? $_POST['id'] : null;
+
+		if ( is_null($post['id']) )
+		{
+			echo json_encode([
+				'status' => 'error',
+				'message' => 'Debes elegir un municipio.'
+			], JSON_PRETTY_PRINT);
+		}
+		else
+		{
+			$this->model->delete_municipality($post);
+
+			echo json_encode([
+				'status' => 'OK',
+				'redirect' => 'index.php?c=monitor'
+			], JSON_PRETTY_PRINT);
+		}
+	}
 }
