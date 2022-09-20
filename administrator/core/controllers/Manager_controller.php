@@ -9,6 +9,8 @@ class Manager_controller extends Controller
     parent::__construct();
   }
 
+  // Función para indexar los reportes por estado de respuesta (VISTA)
+
   public function index( $params )
   {
 
@@ -25,6 +27,8 @@ class Manager_controller extends Controller
     echo $this->view->render($this, 'index');
   }
 
+  // Funcón para obtener el estado de reporte por id de empleado (Función y Vista)
+
   public function incidence_report()
   {
 
@@ -35,7 +39,6 @@ class Manager_controller extends Controller
       global $employee_report;
 
       $employee_report = $this->model->get_employee_report($data);
-      // Crear función send_report() para actualizar los datos de incidencia
 
       define('_title', 'Vista de Creación de Reportes en {$vkye_webpage}');
       echo $this->view->render($this, 'new');

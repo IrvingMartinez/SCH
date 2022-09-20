@@ -154,21 +154,6 @@ public function get_entries_answered()
     );
 }
 
-// Update de Incidencias cuando Manager contesta a RH
-
-public function update_manager($desc_incidence, $media, $id_emp)
-{
-    return $this->database->update(
-        'entries',
-        [
-            'desc_incidence' => $desc_incidence,
-            'media' => $media
-        ],[
-            'id' => $id_emp
-        ]
-    );
-}
-
 // Update cuando Manager archiva la Incidencia en entries
 
 // public function update_entries_archive( $data ){

@@ -103,57 +103,8 @@
                                       </tbody>
                                   </table>
 
-                                  <br>
-
-                                  <table id="entries_table" class="table m-b-0" style="font size: 14px;">
-                                      <thead>
-                                          <tr>
-                                              <th>Respuesta de Incidencia</th>
-                                          </tr>
-                                      </thead>
-                                  </table>
-
-                                  <br>
-
-                                  <?php if($employee_report['status_response']=='1' && empty($employee_report['desc_incidence'])): ?>
-
-                                  <textarea placeholder="Describa detalles de la incidencia..." rows="3" cols="173" name="incidence_response" maxlength="255"></textarea>
-
-                                  <?php endif; ?>
-                                  <?php if($employee_report['status_response']=='2' /*&& !empty($employee_report['desc_incidence'])*/):?>
-
-                                      <p>&nbsp&nbsp<?= $employee_report['desc_incidence']?></p>
-
-                                  <?php endif; ?>
-
-                                  <table id="entries_table" class="table m-b-0" style="font size: 14px;">
-                                      <thead>
-                                          <tr>
-                                              <th>Evidencia de Incidencia</th>
-                                          </tr>
-                                      </thead>
-                                  </table>
-
-                                  <br>
 
                               </div>
-
-
-
-                              <div class="container col-md.6">
-                                  <div class="mb-5">
-                                      <label for="Image" class="form-label">Subir imagen</label>
-                                      <input class="form-control" type="file" id="formFile" onchange="preview()">
-                                  </div>
-                                  <img id="frame" src="" class="img-fluid"/>
-                              </div>
-
-                              <script>
-                                    function preview(){
-                                        frame.src = URL.createObjectURL(event.target.files[0]);
-                                    }
-                              </script>
-
                           </div>
                       </div>
 
@@ -172,8 +123,8 @@
                                           </div>
                                       </label>
 
-                                      <button type="submit" class="btn btn-block">Completar Reporte</button>
-                                      <a href="index.php?c=manager" class="btn btn-block btn-link p-b-0"><small>Cancelar</small></a>
+                                      <a href="index.php?c=manager&m=send_report" class="btn btn-primary btn-block">Reportar Incidencia</a>
+                                      <a href="index.php?c=manager" class="btn btn-secondary btn-block">Cancelar</a>
 
                                   </div>
 
