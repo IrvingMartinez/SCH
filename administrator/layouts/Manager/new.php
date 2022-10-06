@@ -108,6 +108,12 @@
                           </div>
                       </div>
 
+                      <div>
+                          <label class="desc_incidence" name="desc_incidence">
+                              <input type="hidden" value="Esto_es_una_prueba">
+                          </label>
+                      </div>
+
                       <div class="col-xl-4">
                           <div class="card m-b-30">
 
@@ -116,18 +122,23 @@
                                   <h4 class="header-title m-t-0">Foto del empleado</h4>
 
                                   <div class="label">
-                                      <label>
                                           <div class="upload_image_preview">
                                               <figure class="m-0"><img class="img-fluid" src="{$path.root_uploads}<?= $employee_report['avatar'] ?>"></figure>
                                               <span class="d-block"></span>
                                           </div>
-                                      </label>
+                                  </div>
 
-                                      <a href="index.php?c=manager&m=send_report" class="btn btn-primary btn-block">Reportar Incidencia</a>
-                                      <a href="index.php?c=manager" class="btn btn-secondary btn-block">Cancelar</a>
+                                  <h4 class="header-title m-t-0">Evidencias de Incidente - Subir Imagen</h4>
+
+                                  <div class="label">
+
+                                      <div class="upload_image_preview">
+                                      </div>
 
                                   </div>
 
+                                  <a href="index.php?c=manager&m=send_report&id=<?=$_GET['id']?>"  class="btn btn-block">Completar Reporte</a>
+                                  <a href="index.php?c=manager" class="btn btn-secondary btn-block">Cancelar</a>
 
                               </div>
 
