@@ -26,12 +26,13 @@ class Manager_controller extends Controller
 
   // Validar entrada de datos al modelo
 
-  public function validate_report( $edit = false )
+  public function validate_report()
   {
       $post['desc_incidence'] = ( isset($_POST['desc_incidence']) && !empty($_POST['desc_incidence']) ) ? $_POST['desc_incidence'] : null;
       $post['media'] = ( isset($_POST['media']) && !empty($_POST['media']) ) ? $_POST['media'] : null;
 
       $labels = [];
+      $edit = false;
 
       if( is_null($post['desc_incidence']))
         array_push($labels, ['desc_incidence', 'Por favor, agruegue la descripción.']);
@@ -40,20 +41,20 @@ class Manager_controller extends Controller
         {
             $__valid = Upload::validate_file($post['media'], ['jpg', 'jpeg', 'png']);
             if( $__valid['status'] === 'ERROR' )
-                array_push($labels, ['media', 'Por favor, incluya una imagen como evidencia.']);
+                array_push($labels, ['media', $__valid['message']]);
         }
 
         if( !empty($labels) )
         {
             return [
-                'status' => 'ERROR',
+                'status_response' => 'ERROR',
                 'labels' => $labels
             ];
         }
         else
         {
             return [
-                'status' => 'OK',
+                'status_response' => 'OK',
                 'post' => $post
             ];
         }
@@ -81,29 +82,38 @@ class Manager_controller extends Controller
   {
       // Validar existan los campos con label response => $data['data']
 
-      if( isset( $params['id'] && !empty( $params['id'] ) ))
+      if( isset($params['id']) && !empty($params['id']) )
       {
+
           $response = $this->model->get_employee_report($params['id']);
 
-          if( isset($response) && !empty($response) )
+          if(isset($response) && !empty($response))
           {
-              if( Format::exist_ajax_request() )
+              $respone = $this->validate_report();
+
+              if($response['status_response'] == 'ERROR')
               {
-                  $response = $this->validate_report(true)
+                  echo json_encode([
+                     'status_response' => 'error',
+                     'labels' => $response['labels']
+                 ], JSON_PRETTY_PRINT);
+              }
+              else
+              {
+                  $response['post']['id'] = $params['id'];
+
+                  $response = $this->model->save_report($response['post']);
+
+                  if($response['status_response'] != 'OK')
                   {
-                      if( $response['status'] == 'ERROR' )
-                      {
-                          echo json_encode([
-                              // Terminar funcón
-                          ])
-                      }
+                      echo json_encode([
+                          'status_response' => 'fatal_error',
+                          'message' => $response['message']
+                      ], JSON_PRETTY_PRINT);
                   }
               }
-          }
+            }
       }
-
-      define('_title', 'Vista de Resolución de Reportes em {$vkye_webpage}');
-      echo $this->view->render($this, 'index');
-  }
+    }
 
 }

@@ -106,12 +106,7 @@
 
                               </div>
                           </div>
-                      </div>
 
-                      <div>
-                          <label class="desc_incidence" name="desc_incidence">
-                              <input type="hidden" value="Esto_es_una_prueba">
-                          </label>
                       </div>
 
                       <div class="col-xl-4">

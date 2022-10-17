@@ -80,35 +80,34 @@ public function get_employee_report( $id = null )
 
 // Función para contestar la incidencia reportada, y enviarla a RH
 
-    public function save_report( $data )
+    public function save_report( $data = [] )
     {
 
-        // On update change to response 1 => 2 * ADD
-        if($data != null)
+        if( empty($data) )
+        /* */ return null;
+
+        // Function logic
+        $config_uploads = [
+                'path_uploads' => PATH_UPLOADS,
+                'set_name' => 'FILE_NAME_LAST_RANDOM'
+        ];
+
+        $save = [
+            'desc_incidence' => $data['desc_incidence'],
+            'status_response' => $data['status_response']
+        ];
+
+        if( !empty($data['media']['name']) )
         {
-            $this->database->update(
-                    'entries',
-                    [
-                        'status_response' => '2'
-                    ],
-                    [
-                        'id_employee' => $data
-                    ]
-                );
-        }
-        else
-        {
-            $this->database->update(
-                'entries',
-                [
-                    'status_response' => '2'
-                ],
-                [
-                    'id_employee' => '1'
-                ]
-            );
+            $data['media'] = Upload::upload_file($data['media'], $config_uploads);
+            $save['media'] = $data['media']['name'];
         }
 
-    return $query;
+        // Filtro lógico I
+
+        return $this->database->update('entries', $save,
+        [
+            'id' => $data['id']
+        ]);
     }
 }
