@@ -58,6 +58,7 @@ $( document ).ready(function ()
                 modal.find('input[name="username"]').val(response.data.username);
                 modal.find('input[name="password"]').val('');
                 modal.find('select[name="level"]').val(response.data.level);
+                modal.find('select[name="area"]').val(response.data.area);
                 modal.find('input[type="checkbox"][name="permissions[]"]').prop( "checked", false );
                 modal.find('form').append('<input name="id" type="hidden" value="'+ response.data.id +'"/>');
 

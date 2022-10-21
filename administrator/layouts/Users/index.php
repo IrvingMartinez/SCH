@@ -69,6 +69,7 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
                                         <th>Usuario</th>
                                         <th></th>
                                         <th>Nivel</th>
+                                        <th>Área/Departamento</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -80,6 +81,7 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
                                             <td data-title="Usuario"><?= $value['username'] ?></td>
                                             <td></td>
                                             <td data-title="Nivel"><?= $value['level'] ?></td>
+                                            <td data-title="Area"><?= $value['area'] ?></td>
 
                                             <td data-title="Acciones">
                                                 <div class="content-cell">
@@ -109,7 +111,7 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
         <header>Agregar nuevo usuario.</header>
         <main>
             <form name="users_create">
-                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'permissions' => $permissions] ); ?>
+                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'areas' => $areas, 'permissions' => $permissions] ); ?>
             </form>
         </main>
         <footer>
@@ -131,7 +133,7 @@ $this->dependencies->add(['js','{$path.plugins}datatables/js/buttons.html5.min.j
         <header>Viendo el usuario: <strong data-user-title></strong>.</header>
         <main>
             <form name="users_update">
-                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'permissions' => $permissions] ); ?>
+                <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS . 'Users/tpl_form_user.php'), ['levels' => $levels, 'areas' => $areas, 'permissions' => $permissions] ); ?>
             </form>
         </main>
         <footer>

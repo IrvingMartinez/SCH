@@ -28,12 +28,12 @@ class Users_controller extends Controller
 		}
 		else
 		{
-			global $users, $levels, $permissions, $ladas;
+			global $users, $levels, $areas, $permissions;
 
 			$users = $this->model->get_all_users();
 			$levels = $this->model->get_all_levels();
+			$areas = $this->model->get_all_areas();
 			$permissions = $this->model->get_all_permissions();
-			$ladas = $this->format->import_file(PATH_ADMINISTRATOR_INCLUDES, 'code_countries_lada', 'json');
 
 			define('_title', 'Lista de usuarios registrados en {$vkye_webpage}');
 			echo $this->view->render($this, 'index');
@@ -57,6 +57,7 @@ class Users_controller extends Controller
 			$post['username'] = ( isset($_POST['username']) && !empty($_POST['username']) ) ? $_POST['username'] : null;
 			$post['password'] = ( isset($_POST['password']) && !empty($_POST['password']) ) ? $_POST['password'] : null;
 			$post['level'] = ( isset($_POST['level']) && !empty($_POST['level']) ) ? $_POST['level'] : null;
+			$post['area'] = ( isset($_POST['area']) && !empty($_POST['area']) ) ? $_POST['area'] : null;
 			$post['permissions'] = ( isset($_POST['permissions']) && !empty($_POST['permissions']) ) ? $_POST['permissions'] : null;
 
 			$labels = [];
@@ -69,6 +70,9 @@ class Users_controller extends Controller
 
 			if ( is_null($post['level']) )
 				array_push($labels, ['level', 'Selecciona un nivel de usuario.']);
+
+			if ( is_null($post['area']) )
+				array_push($labels, ['area', 'Selecciona área/departamento.']);
 
 			if ( !empty($labels) )
 			{
@@ -100,6 +104,7 @@ class Users_controller extends Controller
 			$post['username'] = ( isset($_POST['username']) && !empty($_POST['username']) ) ? $_POST['username'] : null;
 			$post['password'] = ( isset($_POST['password']) && !empty($_POST['password']) ) ? $_POST['password'] : null;
 			$post['level'] = ( isset($_POST['level']) && !empty($_POST['level']) ) ? $_POST['level'] : null;
+			$post['area'] = ( isset($_POST['area']) && !empty($_POST['area']) ) ? $_POST['area'] : null;
 			$post['permissions'] = ( isset($_POST['permissions']) && !empty($_POST['permissions']) ) ? $_POST['permissions'] : null;
 
 			$labels = [];
@@ -112,6 +117,9 @@ class Users_controller extends Controller
 
 			if ( is_null($post['level']) )
 				array_push($labels, ['level', 'Selecciona un nivel de usuario.']);
+
+			if ( is_null($post['area']) )
+				array_push($labels, ['area', 'Selecciona un área/departamento.']);
 
 			if ( !empty($labels) )
 			{

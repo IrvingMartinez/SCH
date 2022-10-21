@@ -31,7 +31,7 @@ class Set_users_permissions_vkye_adm
             'Blog/update_article' => ['{blog_update}'],
             'Blog/delete_article' => ['{blog_delete}'],
             'Blog/create_category' => ['{categories_blog_create}'],
-            'Blog/delete_category' => ['{categories_blog_delete}'],
+            'Blog/delete_category' => ['{categories_blog_delete}']
         ];
 
         return ( isset($arr[$key]) ) ? $arr[$key] : null;

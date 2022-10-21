@@ -13,6 +13,11 @@ class Users_model extends Model
 		return $this->database->select("levels", '*');
 	}
 
+	public function get_all_areas()
+	{
+		return $this->database->select("areas", '*');
+	}
+
 	public function get_all_permissions()
 	{
 		return $this->database->select("permissions", '*');
@@ -23,11 +28,15 @@ class Users_model extends Model
 		return $this->database->select("users", [
 			"[>]levels" => [
 				"id_level" => "id"
+			],
+			"[>]areas" => [
+				"id_area" => "id"
 			]
 		], [
 			"users.id",
 			"users.username",
-			"levels.title (level)"
+			"levels.title (level)",
+			"areas.title (area)",
 		], [
 			"ORDER" => [
 				'users.id' => 'ASC'
@@ -40,11 +49,15 @@ class Users_model extends Model
 		$response = $this->database->select("users", [
 			"[>]levels" => [
 				"id_level" => "id"
+			],
+			"[>]areas" => [
+				"id_area" => "id"
 			]
 		], [
 			"users.id",
 			"users.username",
 			"levels.id (level)",
+			"areas.id (area)",
 			"users.permissions [Object]",
 		], [
 			"users.id" => $id,
@@ -71,6 +84,7 @@ class Users_model extends Model
 			'username' => $data['username'],
 			'password' => $this->security->create_password($data['password']),
 			'id_level' => $data['level'],
+			'id_area' => $data['area'],
 			'permissions' => $data['permissions']
 		]);
 	}
@@ -83,6 +97,7 @@ class Users_model extends Model
 		$update = [
 			'username' => $data['username'],
 			'id_level' => $data['level'],
+			'id_area' => $data['area'],
 			'permissions' => $data['permissions']
 		];
 

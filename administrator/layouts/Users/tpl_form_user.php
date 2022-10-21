@@ -28,6 +28,18 @@
             </label>
         </div>
     </div>
+    <div class="col-12 m-b-20">
+        <div class="label">
+            <label>
+                <select name="area">
+                    <?php foreach ( $areas as $value ): ?>
+                        <option value="<?= $value['id'] ?>"><?= $value['title'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+                <p class="description">Área / Departamento</p>
+            </label>
+        </div>
+    </div>
     <div class="col-12">
         <p>Seleccione los permisos del usuario.</p>
     </div>

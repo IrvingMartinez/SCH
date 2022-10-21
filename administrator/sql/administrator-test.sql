@@ -124,6 +124,7 @@ CREATE TABLE `users` (
   `username` text NOT NULL,
   `password` text NOT NULL,
   `id_level` bigint(20) DEFAULT NULL,
+  `id_area` bigint(20) DEFAULT NULL,
   `id_employee` bigint(20) DEFAULT NULL,
   `permissions` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -132,8 +133,8 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `id_level`, `id_employee`, `permissions`) VALUES
-(1, 'sysadmin', '', 1, NULL, 'a:15:{i:0;s:12:\"{users_read}\";i:1;s:14:\"{users_create}\";i:2;s:14:\"{users_update}\";i:3;s:14:\"{users_delete}\";i:4;s:18:\"{permissions_read}\";i:5;s:20:\"{permissions_create}\";i:6;s:20:\"{permissions_delete}\";i:7;s:11:\"{blog_read}\";i:8;s:13:\"{blog_create}\";i:9;s:13:\"{blog_update}\";i:10;s:13:\"{blog_delete}\";i:11;s:22:\"{categories_blog_read}\";i:12;s:24:\"{categories_blog_create}\";i:13;s:24:\"{categories_blog_delete}\";i:14;s:18:\"{help_development}\";}');
+INSERT INTO `users` (`id`, `username`, `password`, `id_level`, `id_area`, `id_employee`, `permissions`) VALUES
+(1, 'sysadmin', '', 1, NULL, NULL, 'a:15:{i:0;s:12:\"{users_read}\";i:1;s:14:\"{users_create}\";i:2;s:14:\"{users_update}\";i:3;s:14:\"{users_delete}\";i:4;s:18:\"{permissions_read}\";i:5;s:20:\"{permissions_create}\";i:6;s:20:\"{permissions_delete}\";i:7;s:11:\"{blog_read}\";i:8;s:13:\"{blog_create}\";i:9;s:13:\"{blog_update}\";i:10;s:13:\"{blog_delete}\";i:11;s:22:\"{categories_blog_read}\";i:12;s:24:\"{categories_blog_create}\";i:13;s:24:\"{categories_blog_delete}\";i:14;s:18:\"{help_development}\";}');
 
 -- --------------------------------------------------------
 
@@ -204,8 +205,10 @@ CREATE TABLE `municipalities` (
 
 CREATE TABLE `entries` (
   `id` bigint(20) NOT NULL,
-  `check_time` datetime DEFAULT NULL,
-  `entry_time` datetime DEFAULT NULL,
+  `check_date` date DEFAULT NULL,
+  `check_time` time DEFAULT NULL,
+  `entry_date` date DEFAULT NULL,
+  `entry_time` time DEFAULT NULL,
   `desc_incidence` text DEFAULT NULL,
   `desc_response` text DEFAULT NULL,
   `media` text DEFAULT NULL,
@@ -274,7 +277,8 @@ ALTER TABLE `sessions`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD KEY `level` (`id_level`),
-  ADD KEY `employee` (`id_employee`);
+  ADD KEY `employee` (`id_employee`),
+  ADD KEY `areas` (`id_area`);
 
 --
 -- Indices de la tabla `employees`
@@ -415,5 +419,6 @@ ALTER TABLE `entries`
 --
 ALTER TABLE `users`
     ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_level`) REFERENCES `levels` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
-    ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id_employee`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+    ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`id_employee`) REFERENCES `employees` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+    ADD CONSTRAINT `users_ibfk_3` FOREIGN KEY (`id_area`) REFERENCES `areas` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
 COMMIT;
