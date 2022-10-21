@@ -35,51 +35,6 @@ public function get_entries_report() {
       );
 }
 
-// Función para llamar empleados
-
-public function get_employees(){
-    return $this->database->select(
-        // Tabla a llamar
-        "employees",
-        [
-            'avatar',
-            'id',
-            'name',
-            'ap_pat',
-            'ap_mat',
-            'cuip'
-        ]
-    );
-}
-
-// Pantalla de Incidencias Pendientes de RH
-
-public function get_entries_pending(){
-    return $this->database->select(
-        // Tabla a llamar
-        "entries",
-        [
-            "[>]employees" => ["id_employee" => "id"]
-        ],
-        [
-            // Target columns from Employees
-            'employees.id',
-            'employees.name', 'employees.ap_pat', 'employees.ap_mat',
-            'employees.cuip',
-            'employees.avatar',
-            'employees.num_card', 'employees.num_family',
-            // Target columns from Entries
-            'entries.id',
-            'entries.check_time', 'entries.entry_time',
-            'entries.status_entry',
-            'entries.status_response'
-        ],[
-            'entries.status_response' => '2',
-            'ORDER' => ['entries.entry_time' => 'DESC']
-        ]
-    );
-}
-
 // Función de búsqueda en base al id
 
 public function get_employee_report( $id = null )
@@ -98,6 +53,7 @@ public function get_employee_report( $id = null )
                 "[>]positions" => ["id_position" => "id"]
             ],[
                 // Fetch from Employees
+                'employees.id',
                 'employees.name', 'employees.ap_pat', 'employees.ap_mat',
                 'employees.cuip', 'employees.num_card',
                 'employees.avatar',
@@ -124,48 +80,9 @@ public function get_employee_report( $id = null )
 
 // Función para contestar la incidencia reportada, y enviarla a RH
 
-/* PENDIENTE */
+    public function save_report( $data = [] )
+    {
 
-// Pantalla de Incidencias a ser Archivadas
-
-public function get_entries_answered()
-{
-    return $this->database->select(
-        // Tabla a llamar
-        "entries",
-        [
-            "[>]employees" => ["id_employee" => "id"]
-        ],[
-            // Target columns from Employees
-            'employees.id',
-            'employees.name', 'employees.ap_pat', 'employees.ap_mat',
-            'employees.cuip',
-            'employees.avatar',
-            'employees.num_card', 'employees.num_family',
-            // Target columns from Entries
-            'entries.id',
-            'entries.check_time', 'entries.entry_time',
-            'entries.status_entry',
-            'entries.status_response'
-        ],[
-            'entries.status_response' => '3',
-            'ORDER' => ['entries.entry_time' => 'DESC']
-        ]
-    );
-}
-
-// Update cuando Manager archiva la Incidencia en entries
-
-// public function update_entries_archive( $data ){
-//
-//       $this->database->update(
-//           // Tabla a hacer update
-//           'entries',
-//           [
-//               'status_response' => '4'
-//           ],[
-//               'id' => $data['id']
-//           ]
-//       );
-// }
+        
+    }
 }

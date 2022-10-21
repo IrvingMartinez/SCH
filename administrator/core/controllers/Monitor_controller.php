@@ -164,7 +164,7 @@ class Monitor_controller extends Controller
 
                         $response = $this->model->save_employee( $response['post'], true );
 
-                        if ( $response['status'] == 'fatal_error' )
+                        if ( $response['status'] != 'OK' )
                         {
                             echo json_encode([
                                 'status' => 'fatal_error',
