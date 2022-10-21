@@ -26,38 +26,22 @@ class Manager_controller extends Controller
 
   // Validar entrada de datos al modelo
 
-  public function validate_report()
+  public function validate_report( $data )
   {
-      $post['desc_incidence'] = ( isset($_POST['desc_incidence']) && !empty($_POST['desc_incidence']) ) ? $_POST['desc_incidence'] : null;
-      $post['media'] = ( isset($_POST['media']) && !empty($_POST['media']) ) ? $_POST['media'] : null;
+      // Función que regresa un string de datos a la función de reportes
 
-      $labels = [];
-      $edit = false;
+      /*
 
-      if( is_null($post['desc_incidence']))
-        array_push($labels, ['desc_incidence', 'Por favor, agruegue la descripción.']);
+      RECIBE 2 VALORES: $data['media'] y ['message_response']
 
-        if( $edit == false)
-        {
-            $__valid = Upload::validate_file($post['media'], ['jpg', 'jpeg', 'png']);
-            if( $__valid['status'] === 'ERROR' )
-                array_push($labels, ['media', $__valid['message']]);
-        }
+      $response;
 
-        if( !empty($labels) )
-        {
-            return [
-                'status_response' => 'ERROR',
-                'labels' => $labels
-            ];
-        }
-        else
-        {
-            return [
-                'status_response' => 'OK',
-                'post' => $post
-            ];
-        }
+      VALIDAR 1:
+            if( isset($data['message_response']) && !empty($data['message_response']) ) ? $response = 'OK' : $response = 'error';
+            if( isset($data['media']) && !empty($data['media']) ) ? $response = 'OK' : $response = 'error';
+
+      return $response;
+      */
   }
 
   // Funcón para obtener el estado de reporte por id de empleado (Función y Vista)
@@ -80,40 +64,41 @@ class Manager_controller extends Controller
 
   public function send_report( $params )
   {
-      // Validar existan los campos con label response => $data['data']
+        // Validar existan los campos con label response => $data['data']
 
-      if( isset($params['id']) && !empty($params['id']) )
-      {
+        $data = $_POST['labels'];
 
-          $response = $this->model->get_employee_report($params['id']);
+        echo "<script type='text/javascript'>alert('Hola');</script>";
 
-          if(isset($response) && !empty($response))
-          {
-              $respone = $this->validate_report();
+        global $entries_report;
 
-              if($response['status_response'] == 'ERROR')
-              {
-                  echo json_encode([
-                     'status_response' => 'error',
-                     'labels' => $response['labels']
-                 ], JSON_PRETTY_PRINT);
-              }
-              else
-              {
-                  $response['post']['id'] = $params['id'];
+        $entries_report = $this->model->get_entries_report();
 
-                  $response = $this->model->save_report($response['post']);
+        define('_title', 'Vista de Encargado de Area en {$vkye_webpage}');
+        echo $this->view->render($this, 'index');
 
-                  if($response['status_response'] != 'OK')
-                  {
-                      echo json_encode([
-                          'status_response' => 'fatal_error',
-                          'message' => $response['message']
-                      ], JSON_PRETTY_PRINT);
-                  }
-              }
-            }
-      }
-    }
+        /*
+
+        PARSE $_POST COMO ARRAY CON data_media y data_description
+        AGREGAR FUNCIÓN PARA validate_Data
+
+        $response_status = $this->validate_data(regresa un String entre 'OK' o 'error' );
+
+        if($response_status['media'] o ['descripcion'] == null)
+        {
+            *** DAR ALERTA DE CAMPOS INCOMPLETOS -> NO REDIRECT
+            DIES
+        }
+        else
+        {
+            *** DAR MENSAJE DE CAMPOS COMPLETADOS Y ACTUALIZACIÓN
+
+            update_report($response_status);
+            REDIRECT -> OK TO MANAGER
+
+            render TO -> MANAGER
+        }
+        */
+  }
 
 }

@@ -7,147 +7,106 @@
         <!-- Page Header Starts -->
 
         <div class="row">
-          <div class="col-sm-12">
-            <div class="page-title-box">
-              <ol class="breadcrumb hide-phone">
-                <li class="breadcrumb-item">
-                  <a href="index.php">{$vkye_webpage}</a>
-                </li>
-                <li class="breadcrumb-item active">
-                  Encargado de Área
-                </li>
-              </ol>
-
-              <?php if($employee_report['status_response']=='1'):?>
-                  <h4 class="page-title">
-                    Formulario de Incidencias - Reporte Inicial
-                  </h4>
-              <?php endif;?>
-              <?php if($employee_report['status_response']=='2'):?>
-                  <h4 class="page-title">
-                      Formulario de Incidencias - Esperando Respuesta
-                  </h4>
-              <?php endif;?>
-              <?php if($employee_report['status_response']=='3'):?>
-                  <h4 class="page-title">
-                      Formulario de Incidenicas - Pendiente de Revisión
-                  </h4>
-              <?php endif;?>
-
-              <br>
-
-              <form name="create_report" class="row font-14">
-
-                  <!-- TODO DATA FORM -->
-
-                  <div class="col-xl-8">
-                      <div class="card m-b-30">
-                          <div class="card-body">
-
-                              <!-- Comienza el primer row de datos -->
-
-                                  <table id="entries_table" class="table m-b-0" style="font size: 14px;">
-                                      <thead>
-                                          <tr>
-                                              <th>Nombre de Empleado</th>
-                                              <th>Número de Empleado</th>
-                                              <th>Área</th>
-                                              <th>Municipio</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                              <td colspan="1"><?= $employee_report['name']?>&nbsp<?= $employee_report['ap_pat']?>&nbsp<?= $employee_report['ap_mat']?></td>
-                                              <td colspan="1"><?= $employee_report['num_employee']?></td>
-                                              <td colspan="1"><?= $employee_report['title']?></td>
-                                              <td colspan="1"><?= $employee_report['code']?></td>
-                                          </tr>
-                                          <tr>
-                                              <thead>
-                                                  <th>CURP</th>
-                                                  <th>Número de Familia</th>
-                                                  <th>Número de Tarjeta</th>
-                                                  <th>CUIP</th>
-                                              </thead>
-                                          </tr>
-                                          <tr>
-                                              <td colspan="1"><?= $employee_report['curp']?></td>
-                                              <td colspan="1"><?= $employee_report['num_family']?></td>
-                                              <td colspan="1"><?= $employee_report['num_card']?></td>
-                                              <td colspan="1"><?= $employee_report['cuip']?></td>
-                                          </tr>
-                                      </tbody>
-                                  </table>
-
-                                  <br>
-
-                                  <table id="entries_table" class="table m-b-0" style="font size: 14px;">
-                                      <thead>
-                                          <tr>
-                                              <th>Status de la Entrada</th>
-                                              <th>Hora de Entrada Programada</th>
-                                              <th>Hora de Chequeo</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                          <tr>
-                                              <?php if( $employee_report['status_entry'] == '1'):?>
-                                                  <td class="bg-warning text-black">Retardo</td>
-                                              <?php endif; ?>
-                                              <?php if( $employee_report['status_entry'] == '2'):?>
-                                                  <td class="bg-danger text-white">Falta</td>
-                                              <?php endif; ?>
-                                              <td><?= $employee_report['entry_time']?></td>
-                                              <td><?= $employee_report['check_time']?></td>
-                                          </tr>
-                                      </tbody>
-                                  </table>
-
-
-                              </div>
-                          </div>
-
-                      </div>
-
-                      <div class="col-xl-4">
-                          <div class="card m-b-30">
-
-                              <div class="card-body">
-
-                                  <h4 class="header-title m-t-0">Foto del empleado</h4>
-
-                                  <div class="label">
-                                          <div class="upload_image_preview">
-                                              <figure class="m-0"><img class="img-fluid" src="{$path.root_uploads}<?= $employee_report['avatar'] ?>"></figure>
-                                              <span class="d-block"></span>
-                                          </div>
-                                  </div>
-
-                                  <h4 class="header-title m-t-0">Evidencias de Incidente - Subir Imagen</h4>
-
-                                  <div class="label">
-
-                                      <div class="upload_image_preview">
-                                      </div>
-
-                                  </div>
-
-                                  <a href="index.php?c=manager&m=send_report&id=<?=$_GET['id']?>"  class="btn btn-block">Completar Reporte</a>
-                                  <a href="index.php?c=manager" class="btn btn-secondary btn-block">Cancelar</a>
-
-                              </div>
-
-                          </div>
-                      </div>
-
-              </form>
-
-          </div>
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Generar reporte inicial</h4>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- Page Header Ends -->
+      <!-- Page Header Ends //// Page content Starts -->
+
+      <form name="send_report">
+
+          <!-- Left container Starts -->
+
+                <div class="col-xl-8">
+
+                    <div class="form-group row"> <!-- $FIRST_ROW_DATA -->
+
+                        <div class="col-md-1">
+                            <h6 class="p-t-5">Nombre(s)</h6>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="label">
+                                <label>
+                                    <input class="form-control" type="text" name="name" value="<?=$employee_report['name']?>" disabled>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <h6 class="p-t-5">Apellido Paterno</h6>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="label">
+                                <label>
+                                    <input class="form-control" type="text" name="ap_mat" value="<?=$employee_report['ap_pat']?>" disabled>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <h6 class="p-t-5">Apellido Materno</h6>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="label">
+                                <label>
+                                    <input class="form-control" type="text" name="ap_pat" value="<?=$employee_report['ap_mat']?>" disabled>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <h6 class="p-t-5">Razón del Reporte</h6>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="label">
+                                <label>
+                                    <?php if($employee_report['status_entry']=='2'):?>
+                                        <input style="background-color: #EB4B29; color: white" class="form-control" type="text" name="status_entry" value="Falta" disabled>
+                                    <?php else:?>
+                                        <input style="background-color: #F8D41F; color: black" class="form-control" type="text" name="status_entry" value="Retardo" disabled>
+                                    <?php endif;?>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <h6 class="p-t-5">Campo de texto</h6>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="label">
+                                <label>
+                                    <input class="form-control" type="text" name="desc_incidence" value="<?=$employee_report['desc_incidence']?>" placeholder="Agregue una descripción">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="label">
+                            <label>
+                                <input type="hidden" type="text" name="id" value="<?=$employee_report['id']?>">
+                            </label>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div>
+                                <button type="submit" class="btn btn-primary">Completar Reporte</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- ENDS $FIRST_ROW_DATA //// $SECOND_ROW_DATA -->
 
 
+                </div>
+
+          <!-- Left container Ends-->
+
+      </form>
+
+      <!-- Page content Ends-->
+
+    </div>
 
 </main>

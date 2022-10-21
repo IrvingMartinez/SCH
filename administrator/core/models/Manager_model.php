@@ -83,31 +83,6 @@ public function get_employee_report( $id = null )
     public function save_report( $data = [] )
     {
 
-        if( empty($data) )
-        /* */ return null;
-
-        // Function logic
-        $config_uploads = [
-                'path_uploads' => PATH_UPLOADS,
-                'set_name' => 'FILE_NAME_LAST_RANDOM'
-        ];
-
-        $save = [
-            'desc_incidence' => $data['desc_incidence'],
-            'status_response' => $data['status_response']
-        ];
-
-        if( !empty($data['media']['name']) )
-        {
-            $data['media'] = Upload::upload_file($data['media'], $config_uploads);
-            $save['media'] = $data['media']['name'];
-        }
-
-        // Filtro lógico I
-
-        return $this->database->update('entries', $save,
-        [
-            'id' => $data['id']
-        ]);
+        
     }
 }
