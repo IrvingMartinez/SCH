@@ -78,11 +78,31 @@ public function get_employee_report( $id = null )
         return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
 }
 
-// Función para contestar la incidencia reportada, y enviarla a RH
+public function send_report( $data_desc, $data_id )
+{
 
-    public function save_report( $data = [] )
+    if(is_null($data_desc) || is_null($data_id))
+    {
+        $message = "SCH_SERVER:DATA_IS_EMPTY";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+    }
+    else
     {
 
-        
+        $response = $this->database->update(
+            // Tabla a llamar
+            "entries",
+            [
+                // ROWS
+                "desc_incidence" => $data_desc,
+                "status_response" => "2" 
+            ],[
+                // WHERE
+                "id" => $data_id
+            ]
+        );
     }
+}
+
+
 }
