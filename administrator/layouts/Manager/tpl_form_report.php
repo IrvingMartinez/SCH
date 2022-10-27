@@ -1,6 +1,6 @@
 <!--
 
-global arrays ==> $employee_report
+global arrays ==> $employee_report['data']
 
  -->
 
