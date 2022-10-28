@@ -69,7 +69,8 @@ public function get_employee_report( $id = null )
                 'entries.desc_incidence',
                 // Fetch from Municipalities, Area and Position
                 'areas.title',
-                'municipalities.code'
+                'municipalities.title (pos_title)',
+                'positions.title (pos_area)'
             ],[
                 'entries.id' => [$id]
             ]
@@ -95,7 +96,7 @@ public function send_report( $data_desc, $data_id )
             [
                 // ROWS
                 "desc_incidence" => $data_desc,
-                "status_response" => "2" 
+                "status_response" => "2"
             ],[
                 // WHERE
                 "id" => $data_id
