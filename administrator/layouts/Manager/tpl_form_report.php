@@ -1,7 +1,7 @@
 <div class="col-xl-8">
     <div class="card m-b-30">
         <div class="card-body">
-            <h4 class="header-title m-t-0"> DATOS GENERALES </h4>
+            <h4 class="header-title m-t-0"> Formato de Reporte </h4>
             <p class="text-muted m-b-20"> </p>
 
             <div class="form-group row">
@@ -74,7 +74,7 @@
                 <div class="col-md-4">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="pos" value="<?= ( isset($employee_report) ) ? $employee_report['pos_area'] : '' ?>" disabled>
+                            <input class="form-control" type="text" name="pos_area" value="<?= ( isset($employee_report) ) ? $employee_report['pos_area'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                 <div class="col-md-4">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="area" value="<?= ( isset($employee_report) ) ? $employee_report['title'] : '' ?>" disabled>
+                            <input class="form-control" type="text" name="title" value="<?= ( isset($employee_report) ) ? $employee_report['title'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <div class="col-md-4">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="Municipalities" value="<?= ( isset($employee_report) ) ? $employee_report['pos_title'] : '' ?>" disabled>
+                            <input class="form-control" type="text" name="post_title" value="<?= ( isset($employee_report) ) ? $employee_report['pos_title'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
@@ -109,9 +109,9 @@
                     <div class="label">
                         <label>
                             <?php if($employee_report['status_entry']=='1'):?>
-                                <input class="form-control" type="text" name="status_entry" value="Retardo" disabled>
+                                <input style="background-color:#F8D41F;color:#240404" class="form-control" type="text" name="status_entry" value="Retardo" disabled>
                             <?php else:?>
-                                <input class="form-control" type="text" name="status_entry" value="Falta" disabled>
+                                <input style="background-color:#DA2C2C;color:#F9F1F1" class="form-control" type="text" name="status_entry" value="Falta" disabled>
                             <?php endif;?>
                         </label>
                     </div>
@@ -123,33 +123,64 @@
     <div class="card m-b-30">
         <div class="card-body">
             <!-- Title container -->
-            <h4 class="header-title m-t-0">DATOS TARJETA</h4>
+            <h4 class="header-title m-t-0">Detalles y respuesta de Incidencia</h4>
             <p class="text-muted m-b-20"> </p>
             <!-- End title container -->
 
             <div class="form-group row">
                 <div class="col-md-2">
-                    <h6 class="p-t-5">Número de familia</h6>
+                    <h6 class="p-t-5">Día de Incidencia</h6>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="num_family" value="<?= ( isset($employee_report) ) ? $employee_report['num_family'] : '' ?>">
+                            <input class="form-control" type="text" name="check_date" value="<?= ( isset($employee_report) ) ? $employee_report['check_date'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
 
                 <div class="col-md-2">
-                    <h6 class="p-t-5">Número de tarjeta</h6>
+                    <h6 class="p-t-5">Hora de Entrada</h6>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="num_card" value="<?= ( isset($employee_report) ) ? $employee_report['num_card'] : '' ?>">
+                            <input class="form-control" type="text" name="check_time" value="<?= ( isset($employee_report) ) ? $employee_report['check_time'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
+
+                <div class="col-md-2">
+                    <h6 class="p-t-5">Hora de Checado</h6>
+                </div>
+                <div class="col-md-2">
+                    <div class="label">
+                        <label>
+                            <input class="form-control" type="text" name="entry_time" value="<?= ( isset($employee_report) ) ? $employee_report['entry_time'] : '' ?>" disabled>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="p-t-5">Descripción de Incidencia</h6>
+                </div>
+                <div class="col-md-12">
+                    <div class="label">
+                        <label>
+                            <input style="border-color:#595353#595353" type="text" class="form-control" name="desc_incidence" value="" placeholder="Agregar una descrición de lo sucedido..." required>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="col-md-12 center">
+
+                    <button type="submit" class="btn btn-block">Completar Reporte</button>
+                    <a href="index.php?c=manager" class="btn btn-block btn-link p-b-0"><small>Cancelar</small></a>
+
+                </div>
+
             </div>
+
         </div>
     </div>
 </div>
@@ -164,23 +195,35 @@
             <div class="label">
                 <label>
                     <div class="upload_image_preview">
-                        <?php if ( isset($employee_report) && !empty($employee_report['avatar']) ): ?>
                             <figure class="m-0"><img class="img-fluid" src="{$path.root_uploads}<?= $employee_report['avatar'] ?>"></figure>
-                        <?php else: ?>
-                            <figure class="m-0"><img class="img-fluid" src="{$path.images}empty.png"></figure>
-                        <?php endif; ?>
-                        <span class="d-block">Elegir Fotografía</span>
-                        <input type="file" name="image_cover" accept="image/*" />
+                        <input type="file" name="avatar_placeholder" accept="image/*" / disabled>
                     </div>
                 </label>
             </div>
+
         </div>
     </div>
 
-    <div class="card m-b-30">
+    <!-- <div class="card m-b-30">
+
         <div class="card-body">
-            <button type="submit" class="btn btn-block"><?= ( isset($employee_report) ) ? 'Actualizar' : 'Guardar' ?> empleado</button>
-            <a href="index.php?c=manager" class="btn btn-block btn-link p-b-0"><small>Cancelar</small></a>
+
+            <h4 class="header-title m-t-0">Evidencia fotográfica (Si aplica)</h4>
+
+            <div class="label">
+                <label>
+                    <div>
+                        <input class="form-control" type="file" name="cover_image" accept="image/*">
+                    </div>
+                </label>
+            </div>
+
+            <?php if(isset($employee_report['media']) && !empty($employee_report['media'])):?>
+                <figure class="m-0"><img class="img-fluid" src="{$path.root_uploads}<?= $employee_report['media'] ?>"></figure>
+            <?php endif; ?>
+
         </div>
-    </div>
+
+    </div> -->
+
 </div>

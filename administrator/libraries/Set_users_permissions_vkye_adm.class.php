@@ -10,6 +10,8 @@ class Set_users_permissions_vkye_adm
             'Manager/index' => 'ALL',
             'Manager/incidence_report' => 'ALL',
             'Manager/send_report' => 'ALL',
+            'Inbox/index' => 'ALL',
+            'Inbox/incidence_report' => 'ALL',
             'Schedule/index' => 'ALL',
             'Monitor/index' => 'ALL',
             'Monitor/create_employee' => 'ALL',

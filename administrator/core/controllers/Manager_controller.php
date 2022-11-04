@@ -30,7 +30,7 @@ class Manager_controller extends Controller
   {
       // Agregar función de datos de empleado para vista en formulario
 
-      if(isset($_POST) && !empty($_POST))
+      if(isset($_POST['desc_incidence']) && !empty($_POST['desc_incidence']))
       {
 
           $id = $_GET['id'];
@@ -59,9 +59,5 @@ class Manager_controller extends Controller
 
   }
 
-  public function validate_data($data_desc, $data_media)
-  {
-
-  }
 
 }

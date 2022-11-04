@@ -20,6 +20,12 @@ class Dashboard_menu
         ];
 
         $menu[] = [
+                'name' => 'Inbox RH',
+                'url' => 'index.php?c=inbox',
+                'icon' => 'dripicons-mail'
+        ];
+
+        $menu[] = [
            'name' => 'Empleados',
            'url' => 'index.php?c=monitor',
            'icon' => 'dripicons-user-group'

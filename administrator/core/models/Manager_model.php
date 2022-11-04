@@ -30,7 +30,7 @@ public function get_entries_report() {
               'entries.status_response'
           ],[
              'entries.status_response' => '1',
-             'ORDER' => ['entries.entry_time' => 'DESC']
+             'ORDER' => ['entries.entry_time' => 'ASC']
           ]
       );
 }
@@ -62,8 +62,11 @@ public function get_employee_report( $id = null )
                 'employees.num_family',
                 'employees.rfc',
                 // Fetch from Entries
-                'entries.entry_time',
+                'entries.check_date',
                 'entries.check_time',
+                'entries.entry_date',
+                'entries.media',
+                'entries.entry_time',
                 'entries.status_entry',
                 'entries.status_response',
                 'entries.desc_incidence',
@@ -79,30 +82,22 @@ public function get_employee_report( $id = null )
         return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
 }
 
-public function send_report( $data_desc, $data_id )
+public function send_report( $data_desc, $data_id)
 {
 
-    if(is_null($data_desc) || is_null($data_id))
-    {
-        $message = "SCH_SERVER:DATA_IS_EMPTY";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }
-    else
-    {
+    $response = $this->database->update(
+        // Tabla a llamar
+        "entries",
+        [
+            // ROWS
+            "desc_incidence" => $data_desc,
+            "status_response" => "2"
+        ],[
+            // WHERE
+            "id" => $data_id
+        ]
+    );
 
-        $response = $this->database->update(
-            // Tabla a llamar
-            "entries",
-            [
-                // ROWS
-                "desc_incidence" => $data_desc,
-                "status_response" => "2"
-            ],[
-                // WHERE
-                "id" => $data_id
-            ]
-        );
-    }
 }
 
 

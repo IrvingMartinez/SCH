@@ -38,12 +38,12 @@
             <p class="text-muted m-b-30 font-14">Incidencias recibidas</p>
 
             <!-- STARTS Table indexer -->
-            
+
             <div class="tab" data-target="tab1">
                 Incidencias reportadas en los últimos días
                 <!-- Table Template, subject to change on embed-php query -->
                   <div class="table-box-responsive-lg">
-                    <table id="entries_table" class="table m-b-0" style="font size: 14px;">
+                    <table id="entries_table" class="table m-b-0" style="font-size:14px;">
                         <thead>
                             <tr>
                                 <!-- Table contents, Header -->
@@ -87,7 +87,6 @@
                                 <td data-title="id">
                                     <a href="index.php?c=manager&m=incidence_report&id=<?=$value['id']?>" class="btn btn-primary">Reportar Incidencia</a>
                                 </td>
-                                <td data-title="id_test"></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

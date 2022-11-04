@@ -1,9 +1,7 @@
-<?php defined('_EXEC') or die; ?>
+<?php defined('_EXEC') or die;?>
 
 <main class="wrapper">
     <div class="container-fluid">
-
-        <!-- Page Header Starts -->
 
         <div class="row">
             <div class="col-sm-12">
@@ -14,10 +12,10 @@
                             <a href="index.php">{$vkye_webpage}</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="index.php?c=manager">Incidencias</a>
+                            <a href="index.php?c=inbox">Inbox de RH</a>
                         </li>
                         <li class="breadcrumb-item active">
-                            Generar Reporte
+                            Formato de Reporte
                         </li>
                     </ol>
 
@@ -25,14 +23,9 @@
             </div>
         </div>
 
-      <!-- Page Header Ends //// Page content Starts -->
-
-      <form name="send_report" method="post" enctype="multipart/form-data" class="row">
-          <?php echo $this->format->get_file( Security::DS(PATH_ADMINISTRATOR_LAYOUTS.'Manager/tpl_form_report.php'), ['employee_report' => $employee_report] );?>
-      </form>
-
-      <!-- Page content Ends-->
+        <form name="send_report" method="post" class="row">
+            <?php echo $this->format->get_file(Security::DS(PATH_ADMINISTRATOR_LAYOUTS.'Inbox/tpl_form_report.php'), ['employee_report' => $employee_report]);?>
+        </form>
 
     </div>
-
 </main>
