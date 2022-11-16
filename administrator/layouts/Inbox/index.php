@@ -58,14 +58,11 @@
                                                 <td><figure><img src="<?= ( isset($value['avatar']) ) ? '{$path.root_uploads}'. $value['avatar'] : '{$path.images}empty.png'; ?>"></figure></td>
                                                 <td data-title="emp_detail"><?=$value['name']?>&nbsp<?=$value['ap_pat']?>&nbsp<?=$value['ap_mat']?></td>
                                                 <td>
-                                                    <?php switch($value['status_entry']):
-                                                    case 1:?>
+                                                    <?php if($value['status_entry'] == "1"):?>
                                                         Retardo
-                                                    <?php break;?>
-                                                    <?php case 2:?>
+                                                    <?php else:?>
                                                         Falta
-                                                    <?php break;?>
-                                                    <?php endswitch;?>
+                                                    <?php endif;?>
                                                 </td>
                                                 <td><?=$value['check_date']?></td>
                                                 <td>Pendiente de Reporte</td>

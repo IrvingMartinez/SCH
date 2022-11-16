@@ -8,30 +8,20 @@ class Pages_model extends Model
 		parent::__construct();
 	}
 
-	public function get_employees()
+	public function get_user_info()
 	{
-		return $this->database->select('employees', [
-            "[>]positions" => [
-                "id_position" => "id"
-            ],
-            "[>]areas" => [
-                "id_area" => "id"
-            ]
-        ], [
-			'employees.id',
-			'employees.name',
-			'employees.ap_pat',
-			'employees.ap_mat',
-			'employees.num_employee',
-			'employees.avatar',
-			'employees.status',
-            'positions.title (position)',
-            'areas.title (area)'
-		], [
-			'ORDER' => [
-				'name' => 'ASC'
+
+		// if( is_null($data) )
+		// return false;
+
+		return $this->database->select(
+			'entries',
+			[
+				'check_time'
 			]
-		]);
+		);
+
+		// return (isset($query[0]) && !empty($query[0]) ) ? $query[0] : null;
 	}
 
 }

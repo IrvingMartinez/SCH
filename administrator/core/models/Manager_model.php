@@ -25,7 +25,10 @@ public function get_entries_report() {
               'employees.num_card', 'employees.num_family',
               // Target columns from Entries
               'entries.id',
-              'entries.check_time', 'entries.entry_time',
+              'entries.check_time',
+              'check_date',
+              'entries.entry_time',
+              'entries.entry_date',
               'entries.status_entry',
               'entries.status_response'
           ],[
