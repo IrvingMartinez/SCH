@@ -25,9 +25,7 @@ class System_model extends Model
 			"levels.code"
 		], [
 			"AND" => [
-				'OR' => [
-					"username" => $data['username']
-				],
+				"username" => $data['username'],
 				"users.id_level[=]levels.id"
 			]
 		]);

@@ -62,11 +62,11 @@ class Monitor_controller extends Controller
             /*  */ array_push($labels, ['image_cover', $__valid['message']]);
         }
 
-        if ( is_null($post['num_card']) )
-			array_push($labels, ['num_card', 'Escribe el numero de la tarjeta.']);
-
-        if ( is_null($post['num_family']) )
-			array_push($labels, ['num_family', 'Escribe el numero de familia de la tarjeta.']);
+        // if ( is_null($post['num_card']) )
+		// 	array_push($labels, ['num_card', 'Escribe el numero de la tarjeta.']);
+        //
+        // if ( is_null($post['num_family']) )
+		// 	array_push($labels, ['num_family', 'Escribe el numero de familia de la tarjeta.']);
 
         if ( is_null($post['position']) )
 			array_push($labels, ['position', 'Selecciona un puesto de empleado.']);
