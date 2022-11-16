@@ -37,6 +37,11 @@ class Dashboard_menu
           'icon' => 'dripicons-alarm'
         ];
 
+        $menu[] = [
+                'name' => 'Entradas',
+                'url' => 'index.php?c=entry',
+                'icon' => 'dripicons-flag'
+        ];
 
         // if ( in_array('{blog_read}', Session::get_value('session_permissions')) )
         // {

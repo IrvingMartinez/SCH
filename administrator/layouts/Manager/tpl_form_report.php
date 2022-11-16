@@ -145,7 +145,7 @@
                 <div class="col-md-2">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="check_time" value="<?= ( isset($employee_report) ) ? $employee_report['check_time'] : '' ?>" disabled>
+                            <input class="form-control" type="text" name="entry_time" value="<?= ( isset($employee_report) ) ? $employee_report['entry_time'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                 <div class="col-md-2">
                     <div class="label">
                         <label>
-                            <input class="form-control" type="text" name="entry_time" value="<?= ( isset($employee_report) ) ? $employee_report['entry_time'] : '' ?>" disabled>
+                            <input class="form-control" type="text" name="check_time" value="<?= ( isset($employee_report) ) ? $employee_report['check_time'] : '' ?>" disabled>
                         </label>
                     </div>
                 </div>
@@ -203,27 +203,5 @@
 
         </div>
     </div>
-
-    <!-- <div class="card m-b-30">
-
-        <div class="card-body">
-
-            <h4 class="header-title m-t-0">Evidencia fotográfica (Si aplica)</h4>
-
-            <div class="label">
-                <label>
-                    <div>
-                        <input class="form-control" type="file" name="cover_image" accept="image/*">
-                    </div>
-                </label>
-            </div>
-
-            <?php if(isset($employee_report['media']) && !empty($employee_report['media'])):?>
-                <figure class="m-0"><img class="img-fluid" src="{$path.root_uploads}<?= $employee_report['media'] ?>"></figure>
-            <?php endif; ?>
-
-        </div>
-
-    </div> -->
 
 </div>

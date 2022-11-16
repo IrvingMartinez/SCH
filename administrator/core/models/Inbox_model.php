@@ -31,7 +31,7 @@ class Inbox_model extends Model
                     'entries.status_entry',
                     'entries.status_response'
                 ],[
-                    'entries.status_response' => '1',
+                    'entries.status_response' => '2',
                     'ORDER' => ['entries.entry_time' => 'ASC']
                 ]
         );
@@ -80,6 +80,21 @@ class Inbox_model extends Model
         );
 
         return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
+    }
+
+    public function send_report($data_desc, $data_entry, $data_id)
+    {
+        return $this->database->update(
+            // Tabla a llamar
+            "entries",
+            [
+                "desc_response" => $data_desc,
+                "status_entry" => $data_entry,
+                "status_response" => "4"
+            ],[
+                "id" => $data_id
+            ]
+        );
     }
 
 }

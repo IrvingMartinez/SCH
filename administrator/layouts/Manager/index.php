@@ -76,7 +76,7 @@
                                 <?php if($value['status_entry']=='2'):?>
                                     <td>Falta</td>
                                 <?php endif; ?>
-                                    <td data-title="entry_time"> <?= $value['entry_time'] ?></td>
+                                    <td data-title="entry_time"> <?= $value['check_date'] ?></td>
                                 <?php if($value['status_response']=='1'):?>
                                     <td data-title="status_response"> Pendiente de Reporte</td>
                                 <?php endif; ?>
