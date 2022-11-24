@@ -154,7 +154,7 @@ CREATE TABLE `employees` (
     `avatar` text COLLATE utf8_unicode_ci DEFAULT NULL,
     `status` tinyint(1) NOT NULL DEFAULT '1',
     `num_card` text DEFAULT NULL,
-    `num_family` text DEFAULT NULL,
+    `sched_time` time DEFAULT NULL,
     `id_position` bigint(20) DEFAULT NULL,
     `id_area` bigint(20) DEFAULT NULL,
     `id_municipality` bigint(20) DEFAULT NULL
