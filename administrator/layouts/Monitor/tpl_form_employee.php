@@ -167,17 +167,6 @@
 
             <div class="form-group row">
                 <div class="col-md-2">
-                    <h6 class="p-t-5">Número de familia</h6>
-                </div>
-                <div class="col-md-4">
-                    <div class="label">
-                        <label>
-                            <input class="form-control" type="text" name="num_family" value="<?= ( isset($employee) ) ? $employee['num_family'] : '' ?>">
-                        </label>
-                    </div>
-                </div>
-
-                <div class="col-md-2">
                     <h6 class="p-t-5">Número de tarjeta</h6>
                 </div>
                 <div class="col-md-4">

@@ -68,7 +68,6 @@ class Monitor_model extends Model
             'avatar',
             'status',
             'num_card',
-            'num_family',
             'id_position',
             'id_area',
             'id_municipality'
@@ -99,7 +98,6 @@ class Monitor_model extends Model
 			'cuip' => $data['cuip'],
 			'status' => $data['status'],
 			'num_card' => $data['num_card'],
-			'num_family' => $data['num_family'],
 			'id_position' => $data['position'],
 			'id_area' => $data['area'],
 			'id_municipality' => $data['municipality']

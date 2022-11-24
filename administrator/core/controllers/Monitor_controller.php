@@ -33,7 +33,6 @@ class Monitor_controller extends Controller
 		$post['image_cover'] = ( isset($_FILES['image_cover']) && !empty($_FILES['image_cover']) ) ? $_FILES['image_cover'] : null;
 		$post['status'] = ( isset($_POST['status']) && !empty($_POST['status']) ) ?  true : false;
 		$post['num_card'] = ( isset($_POST['num_card']) && !empty($_POST['num_card']) ) ? $_POST['num_card'] : null;
-		$post['num_family'] = ( isset($_POST['num_family']) && !empty($_POST['num_family']) ) ? $_POST['num_family'] : null;
 		$post['position'] = ( isset($_POST['position']) && !empty($_POST['position']) ) ? $_POST['position'] : null;
 		$post['area'] = ( isset($_POST['area']) && !empty($_POST['area']) ) ? $_POST['area'] : null;
 		$post['municipality'] = ( isset($_POST['municipality']) && !empty($_POST['municipality']) ) ? $_POST['municipality'] : null;
