@@ -27,7 +27,12 @@
             </div>
         </div>
 
-        <div class="row">
+        <script type="text/javascript">
+            setTimeout(function() {
+                $('#info').fadeOut('fast');
+            }, 2000); // <-- time in milliseconds
+        </script>
+        <div id="info" class="row">
             <div class="col-xl-8">
                 <div class="card m-b-30">
                     <div class="card-body text-center">
