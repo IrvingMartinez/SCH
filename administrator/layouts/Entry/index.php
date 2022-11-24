@@ -19,12 +19,14 @@
             </div>
         </div>
 
-        <div align="center" class="row">
+        <div class="row">
             <div class="col-sm-12">
                 <div class="card m-b-30">
-                    <div align="center" class="card-body">
+                    <div class="card-body">
 
-                        <a href="index.php?c=entry&m=entry" class="btn btn-primary">Ir a entradas</a>
+                        <p class="text-muted m-b-30 font-14">Lista de Empleados para Horarios</p>
+
+
 
                     </div>
                 </div>
