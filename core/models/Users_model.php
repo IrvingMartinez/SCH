@@ -28,7 +28,7 @@ class Users_model extends Model
 			"levels.code"
 		], [
 			"AND" => [
-				"email" => $data['email'],
+				"username" => $data['username'],
 				"users.id_level[=]levels.id"
 			]
 		]);
@@ -47,7 +47,7 @@ class Users_model extends Model
 			'email' => $data['email'],
 			'phone' => $data['phone'],
 			'password' => $this->security->create_password($data['password']),
-			'id_level' => 11,
+			'id_level' => 1,
 			'permissions' => null
 		]);
 

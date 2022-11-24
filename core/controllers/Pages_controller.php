@@ -10,10 +10,7 @@ class Pages_controller extends Controller
 
 	public function home()
 	{
-
-		// $employee;
-		// $employee = $this->model->get_user_info();
-
+		
 		define('_title', '{$vkye_webpage}');
 		$template = $this->view->render($this, 'home');
 

@@ -14,20 +14,22 @@ class Index_model extends Model
             return null;
 
         $response = $this->database->select('employees', [
+			"[>]positions" => [
+                "id_position" => "id"
+            ],
+			"[>]areas" => [
+                "id_area" => "id"
+			]
+        ], [
             'name',
             'ap_pat',
             'ap_mat',
-            'curp',
-            'rfc',
-            'num_employee',
             'cuip',
             'avatar',
-            'status',
             'num_card',
-            'num_family',
             'id_position',
-            'id_area',
-            'id_municipality'
+			'positions.title (position)',
+            'areas.title (area)'
         ], [
             'num_card' => $id
         ]);

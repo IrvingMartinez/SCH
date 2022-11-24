@@ -157,7 +157,7 @@
             </div>
         </div>
     </div>
-
+    <?php if ( in_array('{users_create}', Session::get_value('session_permissions')) ): ?>
     <div class="card m-b-30">
         <div class="card-body">
             <!-- Title container -->
@@ -190,6 +190,7 @@
             </div>
         </div>
     </div>
+    <?php endif; ?>
 </div>
 
 <div class="col-xl-4">
