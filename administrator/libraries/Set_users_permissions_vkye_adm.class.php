@@ -16,6 +16,7 @@ class Set_users_permissions_vkye_adm
             'Entry/entry' => 'ALL',
             'Entry/new' => 'ALL',
             'Schedule/index' => 'ALL',
+            'Schedule/change_schedule' => 'ALL',
             'Monitor/index' => 'ALL',
             'Monitor/create_employee' => 'ALL',
             'Monitor/update_employee' => 'ALL',

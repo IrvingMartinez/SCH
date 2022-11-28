@@ -8,9 +8,21 @@ class Dashboard_menu
         $menu = [];
 
         $menu[] = [
-            'name' => 'General',
+            'name' => 'Check In',
             'url' => 'index.php',
             'icon' => 'dripicons-home'
+        ];
+
+        $menu[] = [
+                'name' => 'Areas',
+                'url' => 'index.php?c=entry',
+                'icon' => 'dripicons-network-3'
+        ];
+
+        $menu[] = [
+           'name' => 'Empleados',
+           'url' => 'index.php?c=monitor',
+           'icon' => 'dripicons-user-group'
         ];
 
         $menu[] = [
@@ -26,22 +38,12 @@ class Dashboard_menu
         ];
 
         $menu[] = [
-           'name' => 'Empleados',
-           'url' => 'index.php?c=monitor',
-           'icon' => 'dripicons-user-group'
-        ];
-
-        $menu[] = [
           'name' => 'Horarios',
           'url' => 'index.php?c=schedule',
           'icon' => 'dripicons-alarm'
         ];
 
-        // $menu[] = [
-        //         'name' => 'Entradas',
-        //         'url' => 'index.php?c=entry',
-        //         'icon' => 'dripicons-flag'
-        // ];
+
 
         // if ( in_array('{blog_read}', Session::get_value('session_permissions')) )
         // {

@@ -21,13 +21,16 @@ class Schedule_model extends Model
                 "[>]positions" => ["id_position" => "id"]
             ],[
                 // Fetch from Employees
-                'employees.id',
-                'employees.name', 'employees.ap_pat', 'employees.ap_mat',
-                'employees.cuip', 'employees.num_card',
+                'employees.id (emp_id)',
+                'employees.name',
+                'employees.ap_pat',
+                'employees.ap_mat',
+                'employees.cuip',
+                'employees.num_card',
                 'employees.avatar',
                 'employees.num_employee',
                 'employees.curp',
-                'employees.num_family',
+                'employees.sched_time',
                 'employees.rfc',
                 // Fetch from Entries
                 'entries.check_date',
@@ -44,5 +47,61 @@ class Schedule_model extends Model
                 'positions.title (pos_area)'
             ]
         );
+    }
+
+    public function get_employee_report( $id = null )
+{
+
+    if(is_null($id))
+        return null;
+
+        $response = $this->database->select(
+            // Tabla a llamar
+            "employees",
+            [
+                "[>]entries" => ["id" => "id_employee"],
+                "[>]areas" => ["id_area" => "id"],
+                "[>]municipalities" => ["id_municipality" => "id"],
+                "[>]positions" => ["id_position" => "id"]
+            ],
+            [
+                'employees.id',
+                'employees.name', 'employees.ap_pat', 'employees.ap_mat',
+                'employees.cuip', 'employees.num_card',
+                'employees.avatar',
+                'employees.num_employee',
+                'employees.curp',
+                'employees.sched_time',
+                'employees.rfc',
+                // Fetch from Entries
+                'entries.check_date',
+                'entries.check_time',
+                'entries.entry_date',
+                'entries.media',
+                'entries.entry_time',
+                'entries.status_entry',
+                'entries.status_response',
+                'entries.desc_incidence',
+                // Fetch from Municipalities, Area and Position
+                'areas.title',
+                'municipalities.title (pos_title)',
+                'positions.title (pos_area)'
+            ],[
+                'employees.id' => $id
+            ]
+        );
+
+        return ( isset($response[0]) && !empty($response[0]) ) ? $response[0] : null;
+}
+
+    public function new_schedule($id, $sched_time)
+    {
+        return $this->database->update(
+            'employees',
+            [
+                'sched_time' => $sched_time
+            ],[
+                'id' => $id
+            ]);
     }
 }

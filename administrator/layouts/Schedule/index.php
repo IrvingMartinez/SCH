@@ -51,13 +51,13 @@
                                                      <?=$value['name']?> <?=$value['ap_pat']?> <?=$value['ap_mat']?>
                                                  </td>
                                                  <td>
-                                                     Placeholder
+                                                     <?=$value['sched_time']?>
                                                  </td>
                                                  <td>
                                                      <?=$value['title']?>
                                                  </td>
                                                  <td>
-                                                     Button Placeholder
+                                                     <a class="btn btn-primary" href="index.php?c=schedule&m=change_schedule&id=<?=$value['emp_id']?>">Asignar Horario</a>
                                                  </td>
                                              </tr>
                                          <?php endforeach;?>

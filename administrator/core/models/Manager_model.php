@@ -22,7 +22,7 @@ public function get_entries_report() {
               'employees.name', 'employees.ap_pat', 'employees.ap_mat',
               'employees.cuip',
               'employees.avatar',
-              'employees.num_card', 'employees.num_family',
+              'employees.num_card', 'employees.sched_time',
               // Target columns from Entries
               'entries.id',
               'entries.check_time',
@@ -62,7 +62,7 @@ public function get_employee_report( $id = null )
                 'employees.avatar',
                 'employees.num_employee',
                 'employees.curp',
-                'employees.num_family',
+                'employees.sched_time',
                 'employees.rfc',
                 // Fetch from Entries
                 'entries.check_date',

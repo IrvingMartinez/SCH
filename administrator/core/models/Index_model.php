@@ -8,6 +8,35 @@ class Index_model extends Model
 		parent::__construct();
 	}
 
+	public function create_entry( $card_num )
+	{
+
+		// Pull variables from model / sqli
+
+		global $employee;
+		$employee = $this->get_employee($card_num);
+
+		// Compare timestamps
+
+		global $timeCheck, $timeLate, $date_check;
+
+		return $this->database->insert(
+				'entries',
+				[
+				// fields
+				'check_date' => date('Y-m-d'),
+				'check_time' => date('H:i:s'),
+				'entry_date' => date('Y-m-d'),
+				'entry_time' => $employee['sched_time'],
+				// Agregar función de identificación automática
+				'status_entry' => '1',
+				'status_response' => '1',
+				'id_employee' => $employee['id_emp']
+				]
+		);
+
+	}
+
 	public function get_employee( $id = null )
     {
         if ( is_null($id) )
@@ -21,7 +50,9 @@ class Index_model extends Model
                 "id_area" => "id"
 			]
         ], [
-            'name',
+			'employees.id (id_emp)',
+			'employees.sched_time',
+			'name',
             'ap_pat',
             'ap_mat',
             'cuip',

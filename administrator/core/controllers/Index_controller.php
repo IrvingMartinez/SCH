@@ -18,6 +18,11 @@ class Index_controller extends Controller
 			global $employee;
 			$employee = $this->model->get_employee($card_num);
 
+			// Función de registro entrada
+
+			global $entry;
+			$entry = $this->model->create_entry($card_num);
+
 			define('_title', 'Lista de Áreas en {$vkye_webpage}');
 			echo $this->view->render($this, 'index');
 		}

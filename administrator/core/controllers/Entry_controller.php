@@ -10,6 +10,11 @@ class Entry_controller extends Controller
     public function index()
     {
 
+        // Función al Index, get_areas
+
+        global $areas;
+        $areas = $this->model->get_areas();
+
         define('_title', 'Lista de Entradas en {$vkye_webpage}');
 		echo $this->view->render($this, 'index');
     }
