@@ -15,10 +15,8 @@ class Schedule_model extends Model
             // Tabla a llamar
             "employees",
             [
-                "[>]entries" => ["id" => "id_employee"],
                 "[>]areas" => ["id_area" => "id"],
-                "[>]municipalities" => ["id_municipality" => "id"],
-                "[>]positions" => ["id_position" => "id"]
+                "[>]municipalities" => ["id_municipality" => "id"]
             ],[
                 // Fetch from Employees
                 'employees.id (emp_id)',
@@ -32,19 +30,9 @@ class Schedule_model extends Model
                 'employees.curp',
                 'employees.sched_time',
                 'employees.rfc',
-                // Fetch from Entries
-                'entries.check_date',
-                'entries.check_time',
-                'entries.entry_date',
-                'entries.media',
-                'entries.entry_time',
-                'entries.status_entry',
-                'entries.status_response',
-                'entries.desc_incidence',
                 // Fetch from Municipalities, Area and Position
                 'areas.title',
-                'municipalities.title (pos_title)',
-                'positions.title (pos_area)'
+                'municipalities.title (pos_title)'
             ]
         );
     }
