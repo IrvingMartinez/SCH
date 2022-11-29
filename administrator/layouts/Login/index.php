@@ -2,7 +2,7 @@
 
 <div class="page login">
     <form name="login">
-        <a href="index.php" class="logo"><img src="{$path.images}logotype-large.png" style="width:100%;max-width:200px;" alt="logo"></a>
+        <a href="index.php" class="logo"><img src="{$path.images}logotype-sm-white.png" style="width:100%;max-width:250px;" alt="logo"></a>
 
         <h2>Iniciar sesión</h2>
 

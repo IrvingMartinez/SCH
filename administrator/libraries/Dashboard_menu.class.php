@@ -25,11 +25,14 @@ class Dashboard_menu
                 'icon' => 'dripicons-mail'
         ];
 
-        $menu[] = [
-           'name' => 'Empleados',
-           'url' => 'index.php?c=monitor',
-           'icon' => 'dripicons-user-group'
-        ];
+        if ( in_array('{employees}', Session::get_value('session_permissions')) )
+        {
+            $menu[] = [
+               'name' => 'Empleados',
+               'url' => 'index.php?c=monitor',
+               'icon' => 'dripicons-user-group'
+            ];
+        }
 
         $menu[] = [
           'name' => 'Horarios',
