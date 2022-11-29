@@ -31,7 +31,7 @@ class Inbox_controller extends Controller
             $data_desc = $_POST['desc_response'];
 
             $this->model->send_report($data_desc, $data_entry, $data_id);
-            
+
             echo
             "<script type='text/javascript'>alert('Reporte completado.');</script>";
 
