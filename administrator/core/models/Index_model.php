@@ -36,7 +36,7 @@ class Index_model extends Model
 
 		$time_cross_n = strtotime($time_now);
 
-		// Unix to string for sqli insertion
+		// Unix to string for sqli insertion this
 
 		$time_1 = date('H:i:s', $time_cross_1);
 		$time_2 = date('H:i:s', $time_cross_2);
