@@ -30,13 +30,29 @@
         <script type="text/javascript">
             setTimeout(function() {
                 $('#info').fadeOut('fast');
-            }, 2000); // <-- time in milliseconds
+            }, 2600); // <-- time in milliseconds
         </script>
 
         <!-- agregar case if(empty)-->
 
         <?php if(empty($employee)):?>
-            Esperando lectura...
+            <?php if(isset($_GET['num_card']) && !empty($_GET['num_card'])):?>
+                <div id="info" class="card m-b-30" style="background-color:#566ff5">
+                    <div class="card-body m-b-30">
+                        <div class="header-title font-20 m-t-0">
+                            <h4 align="center" style="color:#f2f3f7" class="p-t-5">Empleado o tarjeta no Registrado</h4>
+                        </div>
+                    </div>
+                </div>
+            <?php else:?>
+                <div class="card m-b-30" style="background-color:#566ff5;">
+                    <div class="card-body m-b-30">
+                        <div class="header-title font-20 m-t-0">
+                            <h4 align="center" style="color:#f2f3f7" class="p-t-5">Esperando lectura...</h4>
+                        </div>
+                    </div>
+                </div>
+            <?php endif;?>
         <?php else:?>
             <div id="info" class="row">
                 <div class="col-xl-8">
@@ -82,11 +98,58 @@
                             <p class="text-muted m-b-40"> </p>
                         </div>
                     </div>
-                    <div class="card m-b-30" style="background-color:#081f65cc;">
-                        <div class="card-body m-b-30">
-                            <!-- <p class="text-muted m-b-20"> </p> -->
+                    <?php if($response == "1"):?>
+                        <div class="card m-b-30" style="background-color:#566ff5;">
+                            <div class="card-body m-b-30">
+                                <div class="header-title font-20 m-t-0">
+                                    <h4 align="center" style="color:#f2f3f7" class="p-t-5">Empleado no Registrado</h4>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    <?php elseif($response == "2"):?>
+                        <div class="card m-b-30" style="background-color:#566ff5;">
+                            <div class="card-body m-b-30">
+                                <div class="header-title font-20 m-t-0">
+                                    <h4 align="center" style="color:#f2f3f7" class="p-t-5">Empleado Inactivo</h4>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif($response == "3"):?>
+                        <div class="card m-b-30" style="background-color:#566ff5;">
+                            <div class="card-body m-b-30">
+                                <div class="header-title font-20 m-t-0">
+                                    <h4 align="center" style="color:#f2f3f7" class="p-t-5">Empleado sin Horario Asignado</h4>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif($response == "4"):?>
+                        <div class="card m-b-30" style="background-color:#566ff5;">
+                            <div class="card-body m-b-30">
+                                <div class="header-title font-20 m-t-0">
+                                    <h4 align="center" style="color:#f2f3f7" class="p-t-5">Empleado ya Registrado Hoy</h4>
+                                </div>
+                            </div>
+                        </div>
+                    <?php elseif($response == "5"):?>
+                        <?php if($res == "1"):?>
+                            <div class="card m-b-30" style="background-color:#d4b022;">
+                                <div class="card-body m-b-30">
+                                    <div class="header-title font-20 m-t-0">
+                                        <h4 align="center" style="color:#3b3635" class="p-t-5">Bienvenido. Retardo.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php elseif($res == "0"):?>
+                            <div class="card m-b-30" style="background-color:#31910f;">
+                                <div class="card-body m-b-30">
+                                    <div class="header-title font-20 m-t-0">
+                                        <h4 align="center" style="color:black" class="p-t-5">Bienvenido. Regular.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif;?>
+                    <?php endif;?>
+
                 </div>
                 <div class="col-xl-4">
                     <div class="card m-b-30">

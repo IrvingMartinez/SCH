@@ -36,8 +36,9 @@
                                     <thead>
                                         <tr>
                                             <th>ID Area</th>
-                                            <th>Código de Área</th>
-                                            <th>Titulo de Área</th>
+                                            <th colspan="2">Código de Área</th>
+                                            <th></th><th></th>
+                                            <th colspan="2">Titulo de Área</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
@@ -47,16 +48,18 @@
                                                 <td>
                                                     <?=$value['id']?>
                                                 </td>
-                                                <td>
+                                                <td colspan="2">
                                                     <?=$value['code']?>
                                                 </td>
-                                                <td>
+                                                <td></td><td></td>
+                                                <td  colspan="2">
                                                     <?=$value['title']?>
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-primary" href="index.php?c=monitor&area_id=<?=$value['id']?>">Empleados</a>
                                                     <a class="btn btn-success" href="index.php?c=schedule&area_id=<?=$value['id']?>">Horarios</a>
                                                     <a class="btn btn-secondary" href="index.php?c=manager&area_id=<?=$value['id']?>">Incidencias</a>
+                                                    <a class="btn btn-info" href="index.php?c=kardex&area_id=<?=$value['id']?>">Kardex de Entradas</a>
                                                 </td>
                                             </tr>
                                         <?php endforeach;?>

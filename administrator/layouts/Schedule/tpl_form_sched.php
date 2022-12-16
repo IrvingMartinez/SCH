@@ -118,7 +118,7 @@
                 <div class="col-md-4">
                     <div class="label">
                         <label>
-                            <input type="time" class="form-control" name="sched_placeholder" value="<?=$employee_report['sched_time']?>" disabled>
+                            <input class="form-control" type="time" name="sched_placeholder" value="<?=$employee_report['sched_time']?>" disabled>
                         </label>
                     </div>
                 </div>
@@ -127,7 +127,9 @@
                 </div>
                 <div class="col-md-4">
                     <div class="label">
-                        <input type="time" class="form-control" name="sched_time" required>
+                        <label>
+                            <input type="time" class="form-control" name="sched_time" value="" required>
+                        </label>
                     </div>
                 </div>
             </div>
